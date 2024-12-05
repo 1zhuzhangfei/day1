@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找不同</title>
+</head>
+<script>
+    //4.找不同
+    //给定两个字符串s和t，只包含小写字母，
+    //字符串t由字符串s随机重排，然后在随机位置添加一个字母，找出在t中被添加的字母。
+    function getNewArr(a, b) {
+        const arr = [...a, ...b];
+        const newArr = arr.filter(item => {
+            //返回b中不包含a的值
+            return !(a.includes(item) && b.includes(item));
+        });
+        return newArr;
+    }
+    console.log(getNewArr('abcdef', 'abchdef'));
+</script>
+
+<body>
+    <div>找不同</div>
+</body>
+
+</html>

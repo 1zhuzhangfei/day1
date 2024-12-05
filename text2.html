@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给定罗马数字将其转换为整数</title>
+</head>
+<script>
+    function parseRomeNumber(rome) {
+        const romeNumber = {
+            'I': 1,
+            'V': 5,
+            'X': 10,
+            'L': 50,
+            'C': 100,
+            'D': 500,
+            'M': 1000
+        }
+
+        let total = 0;
+        let values = 0;
+        for (let i = rome.length - 1; i >= 0; i--) {
+            let value = romeNumber[rome[i]];
+            if (value < values) {
+                total -= value;
+
+            } else {
+                total += value;
+            }
+            values = value;
+        }
+
+        return total;
+
+    }
+
+    console.log(parseRomeNumber("CDXCVIII"));
+
+</script>
+
+<body>
+    <div>给定罗马数字将其转换为整数</div>
+
+</body>
+
+</html>

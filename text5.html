@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘行</title>
+</head>
+<script>
+    // 5.键盘行
+    function words(word) {
+        var a = ["qwertyuiop", "asdfghjkl", "zxcvbnm"];
+
+        var d = [];
+        //遍历输入的数组
+        for (var i = 0; i < word.length; i++) {
+            var text = word[i].toLowerCase();
+            //遍历定义的键盘数组
+            for (var k = 0; k < a.length; k++) {
+                let h = 0;
+                //遍历数组中的单词的单个字母
+                for (var j = 0; j < text.length; j++) {
+
+                    if (a[k].includes(text[j])) {
+                        h++;
+                    }
+
+                    if (h === text.length) {
+                        d.push(word[i]);
+                    }
+
+                }
+
+            }
+        }
+        return d;
+    }
+
+    console.log(words(["adsdf", "Alaska", "Dad", "Peace"]));
+
+</script>
+
+<body>
+    <div>键盘行</div>
+
+</body>
+
+</html>

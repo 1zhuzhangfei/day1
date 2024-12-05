@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨辉三角</title>
+</head>
+<script>
+    //1.打印杨辉三角,转二维数组
+    function printPascalsTriangle(rows) {
+
+        let triangle = [];
+
+        for (let i = 0; i < rows; i++) {
+
+            triangle[i] = new Array(i + 1).fill(1);
+
+            for (let j = 1; j < i; j++) {
+                triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+
+            }
+
+        }
+        // triangle.forEach((row, rowIndex) => {
+        //     let spaces = ' '.repeat((rows - rowIndex - 1) * 2.5);
+        //     console.log(spaces + row.join('    '));
+        // });
+
+        return triangle;
+    }
+
+    console.log(printPascalsTriangle(5));
+</script>
+
+<body>
+    <div>杨辉三角</div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>各位相加</title>
+</head>
+<script>
+    //6.各位相加
+    //三种情况0或者9或者%9取余
+    function puls(num) {
+        let sum = 0;
+        if (num === 0) return num
+        else if (num / 9 === 0) return 9
+        else return num % 9;
+    }
+
+    console.log(puls("789"));
+</script>
+
+<body>
+    <div>各位相加</div>
+</body>
+
+</html>
