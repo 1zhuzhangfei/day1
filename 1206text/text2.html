@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝点击关闭二维码</title>
+</head>
+
+<body>
+    <div id="div" style="display: block;">
+        <button id="1" style="border: 1px solid #131212;color: gray;padding: 15px,15px;">
+            点击关闭</button>
+        <img src="img/tao.png">
+    </div>
+</body>
+
+<script>
+    document.getElementById("1").addEventListener('click', function () {
+        var close = document.getElementById("div")
+        close.setAttribute("style", "display: none");
+    })
+</script>
+
+</html>

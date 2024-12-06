@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密码框提示错误信息</title>
+</head>
+
+<body>
+    <div class="pass">
+        <form id="myForm">
+            设置密码：<input type="password" id="pwd">
+            <a id="mess" style="visibility: visible;"><img src="img/mess.png">请输入密码</a>
+            <a id="wrong" style="visibility: hidden;"><img src="img/wrong.png">请输入正确密码</a>
+            <a id="right" style="visibility: hidden;"><img src="img/right.png">当前输入密码位数正确</a>
+        </form>
+
+    </div>
+</body>
+<script>
+    document.getElementById('pwd').addEventListener('blur', function (event) {
+        if (event.target.tagName.toLowerCase() === 'input') {
+            // console.log('输入框已失去焦点:', event.target.name)
+            var pwdLength = document.getElementById('pwd').value.length;
+            // console.log(pwdLength);
+            var mess = document.getElementById("mess");
+            var right = document.getElementById("right");
+            var wrong = document.getElementById("wrong");
+            if (pwdLength === 0) {
+                mess.setAttribute("style", "visibility: visible");
+                right.setAttribute("style", "visibility: hidden");
+                wrong.setAttribute("style", "visibility: hidden");
+            } else if (pwdLength >= 6 && pwdLength <= 16) {
+                right.setAttribute("style", "visibility: visible");
+                mess.setAttribute("style", "visibility: hidden");
+                wrong.setAttribute("style", "visibility: hidden");
+            } else {
+                wrong.setAttribute("style", "visibility: visible");
+                right.setAttribute("style", "visibility: hidden");
+                mess.setAttribute("style", "visibility: hidden");
+            }
+
+
+        };
+
+    }, true);
+
+</script>
+
+</html>

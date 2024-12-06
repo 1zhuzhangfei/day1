@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选不选反选效果</title>
+</head>
+
+<body>
+    <div>
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="checkbox" name="option">
+        <input type="button" onclick="setAll()" value="全选">
+        <input type="button" onclick="setAllno()" value="全不选">
+        <input type="button" onclick="setBack()" value="反选">
+    </div>
+
+        
+
+</body>
+<script>
+    function setAll() {
+        var radios1 = document.getElementsByName("option");
+        for(i = 0;i<radios1.length;i++){
+            radios1[i].checked = true;
+        }
+
+    }
+
+    function setAllno() {
+        const radios2 = document.getElementsByName("option");
+        radios2.forEach(radio => {
+            radio.checked = false;
+        })
+    }
+    function setBack() {
+        const radios3 = document.getElementsByName("option");
+        radios3.forEach(radio => {
+            if (radio.checked === true) {
+                radio.checked = false;
+            } else {
+                radio.checked = true;
+            }
+        })
+
+
+    }
+
+
+</script>
+
+</html>

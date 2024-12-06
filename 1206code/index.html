@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h1>innerText</h1>
+    </div>
+    <div id="父">
+        <div id="子"></div>
+        <div id="子"></div>
+        <div id=inner></div>
+        <div class="1"></div>
+    </div>
+</body>
+<script src="index.js">
+    var domFu = document.getElementById("父");
+    // var domFu1 = document.querySelector("#父");
+    // console.log(domFu,domFu);
+
+    // var dom1 = document.getElementsByClassName("1");
+    // console.log(dom1);
+    var keys = [];
+    for (var i in domFu) {
+        keys.push(i);
+    }
+
+    console.log(keys.indexOf("111111"));
+
+    //记录该节点存在的子节点（标签） children
+    console.log(domFu.children);
+
+    //记录该节点存在的子节点（文本节点+标签） childNodes
+    console.log(domFu.childNodes);
+
+
+    //基于元素节点的子节点集合，通过nodeType===1来筛选标签节点
+
+    // var arr1 = [1, [2, [3, [4, [5]]]]];
+    // var arr2 = [];
+    // for (var i = 0; i < arr1.length; i++) {
+    //     if (Array.isArray(arr1[i])) {
+    //         console.log(arr2)
+    //         for (var j = 0; j < arr1[i].length; j++) {
+    //             arr2.push(arr1[i][j]);
+    //         }
+
+    //     } else {
+    //         console.log(arr2);
+    //     }
+
+    // }
+
+    //遍历html文档
+    var html4 = document.querySelector("html");
+
+
+    console.log(html4);
+
+    console.log("--------遍历html文档---------")
+    function all() {
+        var html = document.querySelector("html");
+        var htmlElements = [html];
+        var targetElement = [];
+        // console.dir(html);
+        for (var i = 0; i < htmlElements.length; i++) {
+            if (htmlElements[i].children && htmlElements[i].children.length > 0) {
+                console.log(targetElement[i]);
+                for (var j = 0; j < htmlElements[i].children.length; j++) {
+                    targetElement.push(htmlElements[i].children[j]);
+                }
+
+            } else {
+                console.log(targetElement[i]);
+            }
+
+        }
+    }
+
+
+    //任意给一个页面上的标签，返回根标签（通过任何一个标签去寻找html标签）
+
+    console.log("------任意给一个页面上的标签，返回根标签")
+    var inner = document.querySelector("#inner");
+    while (inner.parentNode) {
+        inner = inner.parentNode
+    }
+    console.log(inner);
+
+    //获取文档中的所有叶子节点
+    console.log("-----获取文档中的所有叶子节点")
+    function tree() {
+        var html1 = document.querySelector("html");
+        var htmlElements1 = [html1];
+        var targetElement1 = [];
+        for (var i = 0; i < htmlElements1.length; i++) {
+            if (htmlElements1[i].children && htmlElements1[i].children.length > 0) {
+                for (var j = 0; j < htmlElements1[i].children.length; j++) {
+                    targetElement1.push(htmlElements1[i].children[j]);
+                }
+            }
+            if (htmlElements1[i].children.length === 0) {
+                targetElement1.push(htmlElements1[i]);
+            }
+
+        }
+        return targetElement1;
+    }
+    console.log(tree());
+
+    //通过classname获取元素集合，返回包含目标dom节点的数组（className）
+    function getElesByClassName(name) {
+        var html2 = document.querySelector("html");
+        var htmlElements2 = [html2];
+        var arrClassName = [];
+        for (var i = 0; i < htmlElements2.length; i++) {
+            if (htmlElements2[i].className === name) {
+                arrClassName.push(htmlElements2[i])
+            }
+            if (htmlElements2[i].children && htmlElements2[i].children.length > 0) {
+                for (var j = 0; j < htmlElements2[i].children.length; j++) {
+                    if (htmlElements2[i].children[j].className === name) {
+                        arrClassName.push(htmlElements2[i].children[j]);
+                    }
+
+                }
+            }
+        }
+        return arrClassName;
+
+    }
+
+    console.log(getElesByClassName("1"));
+
+    //通过tagname获取元素集合，返回包含目标dom节点的数组（tagName）
+    function getElesByTag() {
+        var html3 = document.querySelector("html");
+        var htmlElements3 = [html3];
+        var arrtagName = [];
+        for (var i = 0; i < htmlElements3.length; i++) {
+            if (htmlElements3[i].tagName === name) {
+                arrtagName.push(htmlElements2[i])
+            }
+            if (htmlElements2[i].children && htmlElements2[i].children.length > 0) {
+                for (var j = 0; j < htmlElements2[i].children.length; j++) {
+                    if (htmlElements2[i].children[j].tagName === name) {
+                        arrtagName.push(htmlElements2[i].children[j]);
+                    }
+
+                }
+            }
+        }
+        return arrtagName;
+
+    }
+
+    //统计页面中出现了哪些标签，且出现了多少次
+    function sumTag() {
+
+
+
+    }
+
+    // const users = [
+    //     { id: 1, name: 'Alice', age: 25 },
+    //     { id: 2, name: 'Bob', age: 30 },
+    //     { id: 3, name: 'Charlie', age: 35 }
+    // ];
+
+    // for (let i = 0; i < users.length; i++) {
+    //     console.log(users[i].name); // 输出每个用户的姓名
+    // }
+
+    var div = document.querySelector("div");
+    //innerText 更新标签内容（不能识别标签文本）
+    // div.innerText = "<mark>nmsl</mark>";
+
+    //innerHtml 更新标签内容（可以识别标签文本）
+    // div.innerHTML = "<mark>nmsl</mark>";
+
+    console.log(div.innerText);  //通过innerText获取标签内的内容文本（不带标签嵌套）
+    console.log(div.innerHTML);  //通过innerHtml获取标签内的内容文本（带标签嵌套）
+    console.log(div.innerHTML.replace(/<[^<>]+>/g,""));
+
+
+
+</script>
+
+</html>

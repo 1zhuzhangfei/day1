@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>循环精灵图背景</title>
+</head>
+<body>
+   <div class="back">
+        <ul id="box">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<style>
+    .back{
+        width:200px;
+        height: 48px;
+    }
+    .back ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .back ul li{
+        background-image: url(img/sprite.png);
+        width: 40px;
+        height: 40px;
+        list-style: none;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+    
+    }
+</style>
+<script>
+function show(){
+    var lis = document.querySelectorAll("li");
+    for(var i=0;i<lis.length;i++){
+        var index = i*44;
+        lis[i].style.backgroundPosition ="0-"+ index+"px" ;
+    }
+}
+show();
+
+// console.log(document.getElementById("sprite"));
+</script>
+</html>
