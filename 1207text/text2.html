@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现十进制数转二进制字符串的函数</title>
+</head>
+<body>
+    <h2>实现十进制数转二进制字符串的函数</h2>
+    输入你想转成二进制的十进制数<input type="text">
+    <button>转换</button>
+    <div></div>
+  </body>
+  <script>
+    function tenToTwo(tenNum) {
+      let towArr = []
+      while (tenNum !== 0) {
+        let tenNumResidue = tenNum % 2
+        towArr.unshift(tenNumResidue)
+        tenNum = Math.floor(tenNum / 2)
+      }
+      let res = towArr.join('')
+      return ('0').repeat(8 - res.length % 8) + res
+    }
+    let input = document.querySelector('input')
+    let btn = document.querySelector('button')
+    let div = document.querySelector('div')
+    btn.addEventListener('click', () => {
+      div.innerHTML = tenToTwo(input.value)
+    })
+  
+  </script>
+  
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>base64/base32编码解码</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .column {
+            width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            resize: none;
+            outline: none;
+            font-size: 20px;
+        }
+
+        .codeType {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>base64/base32编码解码</h1>
+    <form class="column">
+        <label for="inputArea">Base16 Base32 Base58 Base62 Base64 Base85 Base91 编码/解码</label>
+        <textarea id="inputArea" name="inputArea" rows="8" cols="33"></textarea>
+        <div class="codeType">
+            <label for="codeType">编码类型：</label>
+            <select id="codeType">
+                <option value="Base64">Base64</option>
+                <option value="Base32">Base32</option>
+            </select>
+            <button class="coding">编码</button>
+            <button class="decode">解码</button>
+            <button class="swap">交换</button>
+        </div>
+        <textarea id="printArea" name="printArea" rows="8" cols="33"></textarea>
+    </form>
+
+</body>
+<script>
+    // 编码成base64
+    function base64(content) {
+        let base64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+        let arr = []
+        let res = ''
+        for (let i = 0; i < content.length; i++) {
+            let binCode = content[i].charCodeAt().toString(2).replace(/^/, '0000000').slice(-8)
+            arr.push(binCode)
+        }
+        let binCodeStr = arr.join('')
+        let binCodeStrPaddingZero = binCodeStr + ('0').repeat(6 - binCodeStr.length % 6)
+        let binCodeLength6 = binCodeStrPaddingZero.match(/[01]{6}/g)
+        // console.log(binCodeLength6);
+        for (let j = 0; j < binCodeLength6.length; j++) {
+            let index = parseInt(binCodeLength6[j], 2)
+            res += base64[index]
+        }
+        res = res + ('=').repeat(8 - res.length % 8)
+        return res
+    }
+    // 编码成base32
+    function base32(str) {
+        let base32 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef'
+        let binaryCodeArr = []
+        let res = ''
+        for (let i = 0; i < str.length; i++) {
+            let binaryCode = str[i].charCodeAt().toString(2).replace(/^/, '0000000').slice(-8)
+            binaryCodeArr.push(binaryCode)
+        }
+        let binaryCodeStr = binaryCodeArr.join('')
+        let binaryCodeStrPaddingZero = binaryCodeStr + ('0').repeat(5 - binaryCodeStr.length % 5)
+
+        let binaryCodeLength5 = binaryCodeStrPaddingZero.match(/[01]{5}/g)
+        console.log(binaryCodeLength5);
+        for (let j = 0; j < binaryCodeLength5.length; j++) {
+            let index = parseInt(binaryCodeLength5[j], 2)
+            res += base32[index]
+        }
+        res = res + ('=').repeat(8 - res.length % 8)
+        return res
+    }
+    // 对base64进行解码
+    function base64decode(code64) {
+        let code64Arr = code64.replace(/=*/g, '').split('')
+        let code64ArrIndex = []
+        let towArr64
+        let base64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+        for (let i = 0; i < code64Arr.length; i++) {
+            // 索引--->转为2进制(6个一分不够补0)--->得到二进制数组
+            towArr64 = base64.indexOf(code64Arr[i]).toString(2).replace(/^/, '00000').slice(-6)
+            code64ArrIndex.push(towArr64)
+        }
+        let str64Asclln = code64ArrIndex.join('')
+        let str64Ascll0 = str64Asclln.slice(0, -str64Asclln.length % 8)
+        // 二进制数组--->拼接成字符串--->八个一分
+        str64Ascll = str64Ascll0.match(/[01]{8}/g)
+        // 八个一分的数组--->转换成数字--->转换成对应的ASCLL码
+        for (let j = 0; j < str64Ascll.length; j++) {
+            str64Ascll[j] = String.fromCharCode(parseInt(str64Ascll[j], 2))
+        }
+        // 对应的ASCLL码--->转换成字符串
+        let base64decodeRes = str64Ascll.join('')
+        return base64decodeRes
+    }
+    // 对base32进行解码
+    function base32decode(code32) {
+        let code32Arr = code32.replace(/=*/g, '').split('')
+        let code32ArrIndex = []
+        let towArr32
+        let zeroTowarr32
+        let base32 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef'
+        // let towArr32
+        for (let i = 0; i < code32Arr.length; i++) {
+            // 索引--->转为2进制(5个一分不够补0)--->得到二进制数组
+            towArr32 = base32.indexOf(code32Arr[i]).toString(2).replace(/^/, '0000').slice(-5)
+            code32ArrIndex.push(towArr32)
+        }
+        // 二进制数组--->拼接成字符串--->八个一分
+        str32Asclln = code32ArrIndex.join('')
+        str32Ascll0 = str32Asclln.slice(0, -str32Asclln.length % 8)
+        // (str32Ascll + ('0').repeat(8 - str32Ascll.length % 8))
+        str32Ascll = str32Ascll0.match(/[01]{8}/g)
+        // 八个一分的数组--->转换成数字--->转换成对应的ASCLL码
+        for (let j = 0; j < str32Ascll.length; j++) {
+            str32Ascll[j] = String.fromCharCode(parseInt(str32Ascll[j], 2))
+        }
+        // 对应的ASCLL码--->转换成字符串
+        let base32decodeRes = str32Ascll.join('')
+        return base32decodeRes
+    }
+
+    function baseCodingQuantity(str, value) {
+        switch (str) {
+            case 'Base64':
+                return base64(value)
+            case 'Base32':
+                return base32(value)
+            default:
+                break;
+        }
+    }
+    function baseDecodeQuantity(str, value) {
+        switch (str) {
+            case 'Base64decode':
+                return base64decode(value)
+            case 'Base32decode':
+                return base32decode(value)
+            default:
+                break;
+        }
+    }
+    let inputTextArea = document.querySelector('#inputArea')
+    let printTextArea = document.querySelector('#printArea')
+    let coding = document.querySelector('.coding')
+    let decode = document.querySelector('.decode')
+    let swap = document.querySelector('.swap')
+    // 获取下拉框
+    let select = document.querySelector('select')
+
+    // 编码
+    coding.addEventListener('click', e => {
+        e.preventDefault()
+        let selectValue = select.options[select.selectedIndex].value
+        let inputValue = inputTextArea.value
+        // 获取输入框的值编码后的结果
+        let resCoding = baseCodingQuantity(selectValue, inputValue)
+        printTextArea.value = resCoding
+    })
+    // 解码
+    decode.addEventListener('click', e => {
+        e.preventDefault()
+        let selectValue = select.options[select.selectedIndex].value + 'decode'
+        let inputValue = inputTextArea.value
+        // 获取输入框的值编码后的结果
+        let resCoding = baseDecodeQuantity(selectValue, inputValue)
+        printTextArea.value = resCoding
+    })
+    // 交换
+    swap.addEventListener('click', e => {
+        e.preventDefault()
+        let inputValue = inputTextArea.value
+        let printValue = printTextArea.value
+        inputTextArea.value = printValue
+        printTextArea.value = inputValue
+    })
+</script>
+
+</html>

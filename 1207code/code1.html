@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="code1.css">
+</head>
+
+
+<body>
+    <div class="content">
+        <h1>添加DOM元素</h1>
+        <div class="outer"></div>
+        <div class="wrapper"></div>
+
+    </div>
+
+</body>
+
+<script>
+
+    //通过标签名创建DOM元素
+
+    var img = document.createElement("img");
+    img.src = "img/p2510461047.jpg";
+    img.style = "width:500px";
+    // var body = document.querySelector("body");
+    //读取document里面的body属性就可以拿到body节点
+    document.body.appendChild(img);
+
+    //克隆节点
+    var outer = document.querySelector(".outer");
+    document.body.appendChild(outer.cloneNode(true));
+
+
+    //在任何元素上都可以使用appendeChild方法
+    //作用是在该元素的里面追加一个子元素
+    var wrapper = document.querySelector(".wrapper");
+    var div = document.createElement("div");
+    div.style = "height: 100px;background:pink";
+    wrapper.insertBefore(div, wrapper.children[1]);
+
+    //删除页面上的子节点
+    //清空某个元素的所有子节点innerHtml innerText
+    //删除子节点 removeChild()
+    //删除自身节点，子节点跟着删除 remove()
+
+
+    //替换元素
+    function replaceElement() {
+        var oldImg = document.querySelector("img");
+        var newImg = document.createElement("img");
+        newImg.src = "img/p2510460935.jpg";
+        document.body.replaceChild(newImg, oldImg);
+    }
+    replaceElement();
+
+
+
+
+
+
+
+
+</script>
+
+</html>
