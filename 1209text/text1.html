@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成表格</title>
+</head>
+<style>
+    table {
+        background: rgb(182, 180, 180);
+        margin: auto;
+
+    }
+
+    th {
+        width: 100px;
+    }
+</style>
+
+<body>
+    <table id="myTable">
+        <thead>
+            <th>姓名</th>
+            <th>科目</th>
+            <th>成绩</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+
+
+</body>
+
+<script>
+    const  message = [{ name: '魏璎珞', job: 'JavaScript', score: '100', },
+    { name: '弘历', job: 'JavaScript', score: '90', },
+    { name: '傅恒', job: 'JavaScript', score: '99', },
+    { name: '明玉', job: 'JavaScript', score: '89', }];
+
+    function populateTable(data) {
+        const tableBody = document.querySelector("#myTable tbody");
+        data.forEach(item => {
+            const newRow = document.createElement("tr");
+
+            Object.values(item).forEach(value => {
+                const newCell = document.createElement("td");
+                newCell.textContent = value;
+                newRow.appendChild(newCell);
+            });
+            // 将新行添加到表格中
+            tableBody.appendChild(newRow);
+        });
+    }
+
+    populateTable(message);
+
+    const newDelete = document.createElement("td");
+
+</script>
+
+</html>
