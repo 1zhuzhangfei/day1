@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input id="username" placeholder="请输入用户名" type="text">
+        <input id="submit" type="submit" value="提交">
+        <input id="reset" type="reset" value="重置">
+        <input type="text">
+    </form>
+
+</body>
+<script>
+
+    //UI界面事件
+
+    //表单事件
+    //聚焦事件
+    var usernameIpt = document.querySelector('#username');
+    usernameIpt.onfocus = function focusHandler() {
+        console.log('你可以输入了');
+    }
+    //失去焦点事件
+    usernameIpt.onblur = function blurHandler() {
+        console.log('失去焦点，无法输入');
+    }
+    //input事件
+    usernameIpt.oninput = function inputHandler() {
+        console.log('当前输入框正在输入...');
+    }
+    //change事件 --输入框输入值后焦点移除之前执行
+    usernameIpt.onchange = function inchangeHandler() {
+        console.log('当前输入框内容输入完毕');
+    }
+    //提交事件
+    var form = document.querySelector("form");
+    form.onsubmit = function () {
+        alert("提交当前表单");
+    }
+    //重置事件
+    form.onreset = function () {
+        console.log("表单内容被重置");
+    }
+
+
+
+
+
+
+
+</script>
+
+
+</html>

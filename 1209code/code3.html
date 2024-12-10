@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .outer{
+        width: 500px;
+        height: 500px;
+        background-color: blue;
+    }
+    .inner{
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+    }
+</style>
+<body>
+    <div style="width: 100px;height: 100px; background-color: chocolate;"></div>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+<script>
+    function OutClickHander(e){
+        console.log("点击了outer");
+    }
+
+    function InClickHander(e){
+        console.log("点击了inner");
+    }
+
+    var out = document.querySelector(".outer");
+    out.addEventListener("click",OutClickHander);
+
+    var inn = document.querySelector(".inner");
+    inn.addEventListener("click",InClickHander);
+
+
+    //利用事件传播机制，实现事件的委托 提升事件绑定的效率
+    //当需要给一群元素指定相同类型事件时，就可以使用，（在父级元素上定义一个相同类型的事件）
+    //在事件处理函数中通过特征判断 执行不同的逻辑
+
+    var ul = document.querySelector("ul");
+    
+
+
+
+</script>
+
+
+</html>

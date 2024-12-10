@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿京东显示密码</title>
+</head>
+<style>
+    form {
+        align-items: center;
+    }
+    input{
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <form>
+        <input type="text" placeholder="用户名/邮箱/已验证手机">
+        <input id="pwd" type="password" placeholder="密码">
+        <button id="showPwd">显示/隐藏密码</button>
+        <button>登录</button>
+    </form>
+</body>
+
+<script>
+    var showPwd = document.getElementById("showPwd");
+    // showPwd.onclick = function clickHander(){
+       
+    // }
+    showPwd.addEventListener('click',function(e){
+        e.preventDefault();
+        var pwdStr = document.getElementById("pwd");
+        if(pwdStr.type === "password"){
+            pwdStr.type = "text";
+        }else{
+            pwdStr.type = "password";
+        }
+    })
+</script>
+
+
+</html>

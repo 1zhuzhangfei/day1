@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象</title>
+</head>
+
+<body>
+    <div style="width: 100px; height: 100px; background-color: blue;"></div>
+    <a href="https://www.baidu.com/">百度</a>
+    <ul>
+        <li>刷新</li>
+        <li>粘贴</li>
+    </ul>
+</body>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<script>
+
+    var div = document.querySelector("div");
+
+    //给DOM元素插入内容
+    div.innerHTML = '1209';
+
+    //绑定事件（本质是给DOM元素的属性赋值）
+    // div.onclick = function fn() {
+    //     console.log('点击事件');
+    //     //事件解绑
+    //     div.onclick = null;
+    // }
+
+
+
+    div.onclick = function f1(e) {
+        console.dir(e);
+        if (e.altKey) {
+            console.log("在按住alt键的同时被点击", [e.x, e.y]);
+
+        } else {
+            console.log("单纯被点击");
+        }
+    };
+
+    //e.taget e.srcElement 表示事件触发的源头/目标  =>事件源
+    //e.bubbles 布尔值 表示的是事件类型是否具有冒泡的特征
+    //e.cancelBubble 布尔值 表示的是当前事件是否阻止冒泡/取消冒泡
+
+    //e.x e.y e.layerX e.layerY  e.clientX e.clientY e.pageX e.pageY 数字 表示事件发生的位置相对于不同参考系的坐标
+
+    //e.type 字符串（去掉on的字符串） 表示当前触发的事件类型
+
+    div.ondblclick = function dbclickHander(e) {
+        console.log("事件源", e.target, e.srcElement);
+        console.log("事件类型", e.type);
+        console.log("是否按住ctrl键", e.ctrlKey);
+        console.log("是否按住alt键", e.altKey);
+        console.log("是否冒泡", e.bubbles);
+        console.log("是否取消冒泡", e.cancelBubble);
+        console.log("事件发生的坐标", [e.x, e.y]);
+
+    }
+
+    //事件的默认行为
+    /* 
+    */
+    var a = document.querySelector("a");
+    a.onclick = function clickHander(e) {
+        var url = a.getAttribute("href");
+        console.log(url);
+        e.preventDefault();
+        return false;
+    }
+
+    window.oncontextmenu = function contextmenuHandler(e) {
+        console.log("显示右键菜单");
+        var menu = document.querySelector(".key-menu");
+        if (!menu) {
+            menu = document.createElement("div");
+            menu.setAttribute("class", "key-menu");
+            menu.innerText = "右键菜单";
+
+            menu.onclick = function clickHander(){
+                console.log("右键菜单被点击");
+            }
+
+
+
+            document.body.appendChild(menu);
+        }
+
+        
+
+        menu.style = "background:red;color:white;z-index:999;position:absolute;left:" +
+            e.x + "px;top:" + e.y + "px;";
+        
+        e.preventDefault();
+
+
+    };
+
+
+    
+
+    var html = document.querySelector("html");
+    // html.addEventListener("click",f1);
+
+
+
+
+
+
+</script>
+
+</html>

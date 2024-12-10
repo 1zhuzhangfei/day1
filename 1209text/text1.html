@@ -41,24 +41,38 @@
     { name: '傅恒', job: 'JavaScript', score: '99', },
     { name: '明玉', job: 'JavaScript', score: '89', }];
 
-    function populateTable(data) {
-        const tableBody = document.querySelector("#myTable tbody");
-        data.forEach(item => {
-            const newRow = document.createElement("tr");
+    // function populateTable(data) {
+    //     const tableBody = document.querySelector("#myTable tbody");
+    //     data.forEach(item => {
+    //         const newRow = document.createElement("tr");
 
-            Object.values(item).forEach(value => {
-                const newCell = document.createElement("td");
-                newCell.textContent = value;
-                newRow.appendChild(newCell);
-            });
-            // 将新行添加到表格中
-            tableBody.appendChild(newRow);
-        });
+    //         Object.values(item).forEach(value => {
+    //             const newCell = document.createElement("td");
+    //             newCell.textContent = value;
+    //             newRow.appendChild(newCell);
+    //         });
+    //         // 将新行添加到表格中
+    //         tableBody.appendChild(newRow);
+    //     });
+    // }
+
+    // populateTable(message);
+
+    // const newDelete = document.createElement("td");
+
+    var kyes = ['name','job','score','action'];
+    for(var i=0;i<message.length;i++){
+        var tr = document.createElement("tr");
+        var tdCollectionStr = "";
+        for(var j =0;j<keys.length;j++){
+            var td = document.createElement("td");
+            var propName = keys[j];
+            var innerMessage = message[i][propName];
+            var actionHTML = '<button class="action" data-id"'+message[i].id+'">删除</button>';
+        }
+
     }
 
-    populateTable(message);
-
-    const newDelete = document.createElement("td");
 
 </script>
 

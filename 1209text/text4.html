@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体变大</title>
+</head>
+<body>
+    <div>
+        <a style="font-size: 10px;">出了个大新闻！</a>
+        <button onclick="one()">变大50px</button>
+        <button onclick="two()">变大80px</button>
+    </div>
+</body>
+<script>
+    var oneA = document.querySelector("a");
+    function one(){
+        var aStr = parseInt(oneA.style.fontSize.slice(0, -2)) + 50; 
+        oneA.style.fontSize = aStr + 'px';
+    }
+    function two(){
+        
+        var bStr = parseInt(oneA.style.fontSize.slice(0, -2)) + 80; 
+        oneA.style.fontSize = bStr + 'px';
+    }
+    
+</script>
+
+</html>
