@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字增加</title>
+</head>
+<style>
+    div {
+        padding: 100px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    input {
+        text-align: center;
+        height: 50px;
+        width: 200px;
+
+    }
+</style>
+
+<body>
+    <div>
+        数字增加<input id="number" type="text">
+
+    </div>
+
+</body>
+<script>
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    //给输入框添加失去焦点事件
+    var inputValue = document.getElementById("number");
+    inputValue.addEventListener("blur", function () {
+        console.log(inputValue.value);
+        var lastNumber = inputValue.value;
+        // console.log("输入框失去焦点");
+        console.log(getRandomInt(1,50));
+        
+        var randomNumber = 0;
+        var randomId =  window.setInterval(function(){
+            
+            
+            if(randomNumber<lastNumber){
+                
+                inputValue.value = randomNumber;
+                randomNumber = parseInt(randomNumber)+ getRandomInt(1,100);
+
+            }else{
+                inputValue.value = lastNumber;
+                clearInterval(randomId);
+            }
+        },500);
+
+    });
+</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .main {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(red, yellow);
+        position: relative;
+        left: 0px;
+        
+    }
+    .symbol{
+        width: 1px;
+        background-color: black;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 800px;
+    }
+</style>
+
+<body>
+    <div class="main"></div>
+    <div class="symbol"></div>
+</body>
+<script>
+    var main = document.querySelector(".main");
+
+    //每次运动距离
+    var step = 10;
+    //运动停止位置
+    var stopStep = 800;
+
+    var currentLeft = parseInt(getComputedStyle(main).left);
+    var nextLeft = currentLeft;
+
+    //设置定时器
+    var timer = setInterval(function () {
+        nextLeft += step;
+        
+        var lastStep = stopStep - nextLeft;
+        if(lastStep<step){
+            step = lastStep;
+        }
+        if(nextLeft >= stopStep){
+            clearInterval(timer);
+        }
+        main.style.left = `${nextLeft + step}px`;
+    }, 20);
+</script>
+
+</html>

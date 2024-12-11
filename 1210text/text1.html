@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时器</title>
+</head>
+<style>
+    div {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .father {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+    }
+
+    .count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    p {
+        display: block;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <div>
+        <div class="father">
+            
+            <div style="width: 250px;">Countdown
+                <p id="time">48:00:00</p>
+            </div>
+            <div style="width: 250px;">Million Seconds
+                <p id="minutes">48:00:00:000</p>
+            </div>
+        </div>
+        <div class="count">
+            <div style="width: 500px;">Day Level
+                <p id="day">2天00时00分00秒</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let day = 1; let hour = 47; let minute = 59; let second = 59; let millionSecond = 1000;
+    let displayHour = 0; let displayMinute = 0; let displaySecond = 0; let displayMillion = 0;
+
+    window.setInterval(function () {
+
+
+        //设置时间
+        // millionSecond -= 0;
+        // if (millionSecond === 0) {
+        //     millionSecond = 1000;
+        //     second--;
+        //     if (second  === 0) {
+        //         second = 60;
+        //         minute--;
+        //         if (minute  === 0) {
+        //             minute = 60;
+        //             hour--;
+        //             if (huor  === 0) {
+        //                 hour = 24;
+        //                 day--;
+        //             }
+        //         }
+        //     }
+        // }
+
+        second -=1;
+        if(second === 0){
+            second = 59;
+            minute--;
+            if (minute  === 0) {
+                    minute = 59;
+                    hour--;
+                    if (huor  === 0) {
+                        hour = 23;
+                        day--;
+                    }
+                }
+        }
+
+
+        if (second < 10) { displaySecond = "0" + second.toString(); }
+        else { displaySecond = second; }
+
+        if (minute < 10) { displayMinute = "0" + minute.toString(); }
+        else { displayMinute = minute; }
+
+        if (hour < 10) { displayHour = "0" + hour.toString(); }
+        else { displayHour = hour; }
+        //设置countdown
+        document.getElementById("time").innerHTML = displayHour + ":" + displayMinute + ":" + displaySecond;
+        document.getElementById("minutes").innerHTML = displayHour + ":" + displayMinute + ":" + displaySecond + ":" + Math.floor(Math.random() * (999 - 100 + 1));
+        document.getElementById("day").innerHTML = day + "天" + displayHour%24 + "时" + displayMinute%60 + "分" + displaySecond + "秒";
+
+    }, 1000)
+
+
+
+
+</script>
+
+</html>

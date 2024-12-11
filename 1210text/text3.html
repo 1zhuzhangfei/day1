@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用setTimeout模拟setInterval</title>
+</head>
+
+<body>
+    <div>
+        使用setTimeout模拟setInterval
+    </div>
+    <div id="countdown">
+    </div>
+</body>
+<script>
+    //使用setTimeout模拟setInterval
+    
+    // console.log(countdown.innerHTML);
+
+    function countDown(seconds){
+        var countdown = document.getElementById("countdown");
+        console.log(seconds);
+        if(seconds<=0){
+            countdown.innerHTML = "倒计时结束！";
+        }else{
+            countdown.innerHTML = `倒计时${seconds}秒`;
+            setTimeout(()=>countDown(seconds - 1),1000);
+        }
+    }
+
+    countDown(10);
+    
+    
+
+
+</script>
+
+
+</html>
