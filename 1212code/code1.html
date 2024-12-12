@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    iframe{
+        width: 100vw;
+        height: 100vh;
+    }
+</style>
+<body>
+    <h1>iframe</h1>
+    <iframe src="./bar.html" frameborder="0"></iframe>
+</body>
+<script>
+    function changeSrc(src){
+        var iframe = document.querySelector("iframe");
+        iframe.setAttribute('src',src);
+    }
+
+    var hashMap={
+        "#foo":'./foo.html',
+        "#bar":'./bar.html'
+
+    };
+
+    window.addEventListener('hashchange',function(){
+        var src = hashMap[window.location.hash];
+        if(!src){
+            src = './404.html';
+        }
+        changeSrc(src);
+    })
+
+</script>
+
+</html>

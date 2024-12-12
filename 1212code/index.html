@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <a href="#123">123</a>
+    <a href="#456">456</a>
+    <a href="#789">789</a>
+    <button class="reload-btn">刷新</button>
+    <button class="replace-btn">跳转到百度</button>
+
+</body>
+<script>
+    //函数执行的时候 函数中的this指向问题
+
+    //一般情况下，函数执行时的this指向当前执行表达式中离函数最近的主体
+
+    //定时器/延时器中的回调函数中的this指向window
+
+    //事件处理函数中的this指向事件绑定的主体
+
+    //通过location对象可以获取如下信息
+    console.log('协议:', location.protocol);
+    console.log('主机:', location.host);
+    console.log('端口:', location.port);
+    console.log('路径:', location.pathname);
+    console.log('参数:', location.search);
+    console.log('哈希:', location.hash);
+
+    //监听hash值的改变
+    window.onhashchange = function(){
+        console.log("hash改变了");
+    }
+
+    //处理路径参数
+    function formatQueryString(){
+        var res= {};
+        var searchString = location.search.replace(/^\?/,'');
+        var tempArr = searchString.split('&');
+        for(var i = 0; i<tempArr.length;i++){
+            var temp = tempArr[i].split('=');
+            res[temp[0]] = temp[1];
+
+        }
+
+    }
+    console.log(formatQueryString());
+
+
+    //location还提供了reload方法来刷新页面 relace方法替换页面资源（页面跳转）
+    var reloadBtn = document.querySelector(".reload-btn");
+    var replaceBtn= document.querySelector(".replace-btn");
+    reloadBtn.addEventListener('click',function(){
+        location.reload();
+    });
+    replaceBtn.addEventListener('click',function(){
+        location.replace("https://www.baidu.com/");
+    });
+
+
+
+    //获取域名的三种方式
+    document.URL;
+    location.href;
+    window.origin;
+
+
+    //历史记录 window.history
+    //前进  history.forward() 前进一个页面
+    //回退  history.back()  后退一个页面
+    //指定  history.go(1) 指定跳转页面，前进整数，后退负数
+
+
+
+
+</script>
+
+</html>

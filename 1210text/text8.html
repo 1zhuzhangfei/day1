@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* .switch-main {
+        display: flex;
+        align-items: center;
+        width: 100px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: blueviolet;
+        overflow: hidden;
+        position: relative;
+    }
+    .switch-main::before {
+        content: '';
+        display: flex;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 25px;
+        background-color: blueviolet;
+        transform: translateX(0);
+    }
+    .switch-main::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        align-items: center;
+        height: 40px;
+        border-radius: 20px;
+        background-color: black;
+    }
+    switch-checkbox:checked~.switch-main::before{
+        transform: translateX(50px);
+
+
+    }
+    switch-checkbox:checked~.switch-main::after{
+        background-color: blueviolet;
+        transform: translateX(80px);
+    } */
+
+    .switch-main {
+        display: flex;
+        align-items: center;
+        width: 100px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: blueviolet;
+    }
+
+    .switch-inner {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-left: 5px;
+        background-color: white;
+        transform: translateX(0);
+        transition: all ease-in-out 500ms;
+        position: relative;
+
+    }
+
+    #switch-checkbox:checked~.switch-main>.switch-inner {
+
+        transform: translateX(50px);
+    }
+
+    #switch-checkbox:checked~.switch-main>.switch-inner::after {
+        background-color: blueviolet;
+        transform: translateX(-20px);
+    }
+
+    .switch-inner::after {
+        content: '';
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: white;
+        transform: translateX(0);
+        transition: all ease 300ms;
+
+    }
+</style>
+
+<body>
+    <div class="switch">
+        <input id="switch-checkbox" type="checkbox">
+        <label class="switch-main" for="switch-checkbox">
+            <div class="switch-inner"></div>
+
+        </label>
+    </div>
+</body>
+
+</html>

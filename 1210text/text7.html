@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白天夜间模式切换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            width: 100vw;
+            height: 100vh;
+
+        }
+
+        .dark body {
+            background-color: black;
+        }
+
+        .light body {
+            background-color: white;
+        }
+
+        .dark .msg {
+            color: white;
+        }
+
+        .light .msg {
+            color: black;
+        }
+
+        .switch-container {
+            cursor: pointer;
+
+        }
+
+        .switch-input {
+            display: none;
+
+        }
+
+        .switch-input:checked~.switch-main::after {
+            left: 50px;
+        }
+
+        /* .switch-input:checked ~ .switch-main>open{
+
+        } */
+        .switch-main {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: blueviolet;
+            position: relative;
+
+        }
+
+        .switch-main::after {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 25px;
+            background-color: white;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            transition: all ease-in-out 200ms;
+        }
+
+        .open {
+            color: white;
+            transition: all ease-in-out 1000ms;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="msg">JavaScript</h1>
+    <div class="switch-container">
+        <input class="switch-input" id="switch-input" type="checkbox">
+        <label class="switch-main" for="switch-input">
+            <span class="open">开</span>
+            <span class="close">关</span>
+        </label>
+
+    </div>
+</body>
+<script>
+    var switchButton = document.querySelector('.switch-input');
+    switchButton.onchange = function () {
+        document.documentElement.setAttribute('class', this.checked ? 'dark' : 'light');
+
+    }
+</script>
+
+</html>

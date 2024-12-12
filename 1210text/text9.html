@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        transition: all ease-in-out 1s;
+    }
+
+    .dark>body {
+        width: 100vw;
+        height: 100vh;
+        transition: all ease-in-out 1s;
+        color: white;
+    }
+</style>
+
+<body>
+    <div style="position: absolute;right: 0;">
+        <label for="checkbox">dark/light</label>
+        <input id="checkbox" type="checkbox">
+        <h1>JavaScript</h1>
+
+    </div>
+
+
+</body>
+<script>
+    var checkbox = document.querySelector("#checkbox");
+    var originValue = 0;
+    // var position = {x:0,y:0}
+    var rectInfo = checkbox.getBoundingClientRect();
+    var pos = { x: rectInfo.x, y: rectInfo.y };
+
+    //设置定时器
+    checkbox.addEventListener('change', function () {
+        var isChecked = this.checked;
+
+        var timerId = null;
+
+        if (isChecked) {
+            document.documentElement.setAttribute("class", "dark");
+
+            timerId = setInterval(function () {
+                originValue += 4;
+                document.body.style.backgroundImage = `radial-gradient(circle at ${pos.x}px ${pos.y}px,black 0%, black ${originValue}%, white 0%, white 100%)`
+                if (originValue > 100) clearInterval(timerId);
+            }, 17)
+
+        } else {
+            document.documentElement.classList.remove('dark');
+            timerId = setInterval(function () {
+                originValue -= 4;
+                document.body.style.backgroundImage = `radial-gradient(circle at ${pos.x}px ${pos.y}px,black 0%, black ${originValue}%, white 0%, white 100%)`
+                if (originValue < 0) clearInterval(timerId);
+            }, 17)
+
+
+        }
+    })
+</script>
+
+</html>
