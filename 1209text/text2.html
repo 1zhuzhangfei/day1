@@ -5,24 +5,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <symbol>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-            <path fill="currentColor" fill-rule="evenodd"
-                d="M12 3.942a6.35 6.35 0 0 1 4.305-1.692c1.726 0 3.374.71 4.58 1.96a6.7 6.7 0 0 1 1.865 4.652a6.7 6.7 0 0 1-1.865 4.652c-.796.825-1.591 1.67-2.39 2.518c-1.624 1.724-3.265 3.467-4.97 5.108l-.003.004a2.213 2.213 0 0 1-3.113-.069l-7.295-7.561c-2.485-2.577-2.485-6.727 0-9.303A6.33 6.33 0 0 1 12 3.942"
-                clip-rule="evenodd" />
-        </svg>
-    </symbol> -->
+   
 
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .heart-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .heart {
+        font-size: 2rem;
+        cursor: pointer;
+        color: black;
+        transition: color 0.3s;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .result {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+</style>
 
 
 <body>
-    <div>
-       <div></div>
-    </div>
+    <div class="heart-container"></div>
+    <div class="result"></div>
 </body>
 <script>
+    // 配置总数和评语
+    const numHearts = 5; // 总共多少颗心
+    const comments = [
+        "最差",    // 第 1 颗心对应的评语
+        "不及格", // 第 2 颗心对应的评语
+        "及格",    // 第 3 颗心对应的评语
+        "良好",    // 第 4 颗心对应的评语
+        "优秀"     // 第 5 颗心对应的评语
+    ];
 
+    const container = document.querySelector('.heart-container');
+    const resultDiv = document.querySelector('.result');
+
+    // 动态创建心形元素
+    for (let i = 0; i < numHearts; i++) {
+        const heart = document.createElement('span');
+        heart.classList.add('heart');
+        heart.textContent = '❤'; // 添加心形符号
+        heart.dataset.index = i; // 为每颗心添加索引值
+        container.appendChild(heart);
+
+        // 点击事件
+        heart.addEventListener('click', () => {
+            const index = parseInt(heart.dataset.index);
+
+            // 更新心形颜色
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach((h, idx) => {
+                if (idx <= index) {
+                    h.classList.add('red'); // 变红
+                } else {
+                    h.classList.remove('red'); // 变黑
+                }
+            });
+
+            // 显示评语
+            resultDiv.textContent = comments[index];
+        });
+    }
 </script>
 
 </html>

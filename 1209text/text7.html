@@ -1,11 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>留言板</title>
+
 </head>
-<body>
+<style>
+    textarea {
+        width: 200px;
+        height: 150px;
+    }
+
+    .content {
+        width: 500px;
+    }
+    ul{
+        list-style-type:none ;
+        border-collapse: collapse;
+        /* 合并边框 */
+        width: 300px;
+        margin: 20px auto;
+    }
+
+    ul,
+    li {
+        background: rgb(149, 160, 160);
+
+    }
+
+    li {
+        padding-top: 10px;
+        height: 30px;
+        position: relative;
+        vertical-align: bottom;
+    }
+
+    .bottom {
+        width: 100%;
+    }
+
+    .dBtn {
+        position: absolute;
+        /* 绝对定位按钮 */
+        right: 0;
+        /* 靠右对齐 */
+        top: 50%;
+        /* 垂直居中 */
+        transform: translateY(-50%);
+        /* 调整垂直居中的位置 */
+    }
     
+</style>
+
+<body>
+    <textarea></textarea>
+    <button id="subBtn">发布</button>
+    <button id="delBtn">删除所有留言</button>
+    <div class="content">
+        <ul>
+
+        </ul>
+    </div>
 </body>
+<script>
+    var textarea = document.querySelector("textarea");
+    var subBtn = document.getElementById("subBtn");
+    var delBtn = document.getElementById("delBtn");
+    var ul = document.querySelector("ul");
+    subBtn.addEventListener("click", function () {
+        var content = textarea.value;
+        if (content !== '') {
+            console.log("111")
+            content = `<div class="bottom">${content}<button class="dBtn">删除</button></div>`
+            var li = document.createElement("li");
+            li.innerHTML = content;
+            ul.appendChild(li);
+        }
+    })
+    ul.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (e.target.className === "dBtn")
+            e.target.parentNode.parentNode.remove();
+    })
+    delBtn.addEventListener("click", function () {
+        ul.innerHTML = "";
+    })
+</script>
+
 </html>

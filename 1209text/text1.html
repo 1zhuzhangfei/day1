@@ -8,13 +8,34 @@
 </head>
 <style>
     table {
-        background: rgb(182, 180, 180);
-        margin: auto;
+        border-collapse: collapse;
+        /* 合并边框 */
+        width: 300px;
+        margin: 20px auto;
+        text-align: center;
+    }
 
+    th,
+    td {
+        border: 1px solid black;
+        /* 为单元格添加边框 */
+        padding: 10px;
+        /* 设置单元格内边距 */
     }
 
     th {
-        width: 100px;
+        background-color: #f2f2f2;
+        /* 表头背景颜色 */
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+        /* 偶数行背景颜色 */
+    }
+
+    tr:nth-child(odd) {
+        background-color: #ffffff;
+        /* 奇数行背景颜色 */
     }
 </style>
 
@@ -30,16 +51,21 @@
 
         </tbody>
     </table>
-    
+
 
 
 </body>
 
 <script>
-    const  message = [{ name: '魏璎珞', job: 'JavaScript', score: '100', },
-    { name: '弘历', job: 'JavaScript', score: '90', },
-    { name: '傅恒', job: 'JavaScript', score: '99', },
-    { name: '明玉', job: 'JavaScript', score: '89', }];
+    var dataSource =
+        [
+            { id: 1, name: "魏璎珞", subject: "JavaScript", grade: 100 },
+            { id: 2, name: "弘历", subject: "JavaScript", grade: 90 },
+            { id: 3, name: "傅恒", subject: "JavaScript", grade: 99 },
+            { id: 4, name: "明玉", subject: "JavaScript", grade: 89 }
+        ]
+        ;
+
 
     // function populateTable(data) {
     //     const tableBody = document.querySelector("#myTable tbody");
@@ -60,17 +86,25 @@
 
     // const newDelete = document.createElement("td");
 
-    var kyes = ['name','job','score','action'];
-    for(var i=0;i<message.length;i++){
+    var tbody = document.querySelector("tbody");
+    tbody.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (e.target.className === "action") {
+            e.target.parentElement.parentElement.remove();
+
+        }
+    })
+    var keys = ['name', 'subject', 'grade', 'action'];
+    for (let i = 0; i < dataSource.length; i++) {
         var tr = document.createElement("tr");
-        var tdCollectionStr = "";
-        for(var j =0;j<keys.length;j++){
+        for (let j = 0; j < keys.length; j++) {
             var td = document.createElement("td");
             var propName = keys[j];
-            var innerMessage = message[i][propName];
-            var actionHTML = '<button class="action" data-id"'+message[i].id+'">删除</button>';
+            var innerMsg = dataSource[i][propName];
+            td.innerHTML = innerMsg ? innerMsg : "<button class='action' id='" + dataSource[i].id + "'>删除</button>";
+            tr.appendChild(td);
         }
-
+        tbody.appendChild(tr);
     }
 
 
