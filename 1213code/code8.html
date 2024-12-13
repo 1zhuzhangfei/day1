@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>唤起弹窗</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .window {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 500px;
+        height: 400px;
+        border-radius: 20px;
+        transform: translate(-50%, -50%);
+        /* 水平居中 */
+        justify-content: center;
+         /* 垂直居中 */
+        align-items: center;
+        background-color: blue;
+        color: white;
+        display: none;
+        z-index: 1;
+
+
+    }
+
+    .closeWindow {
+        position: absolute;
+        left: 225px;
+        top: 400px;
+        z-index: 2;
+        background-image: url("img/close.png");
+        background-size: cover;
+        color: gray;
+        width: 50px;
+        height: 50px;
+    }
+
+    #switch-checkbox {
+        display: none;
+
+
+
+    }
+
+    .openWindow {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 200px;
+        height: 40px;
+        padding-top: 10px;
+        text-align: center;
+        border: 0px;
+        color: white;
+        border-radius: 20px;
+        transform: translate(-50%, -50%);
+        background-color: blue;
+
+
+    }
+
+    #switch-checkbox:checked~.window {
+        display: flex;
+    }
+</style>
+
+<body>
+
+    <!-- <button class="openWindow">唤起弹窗</button> -->
+    <div class="switch">
+        <input id="switch-checkbox" type="checkbox">
+        <label class="openWindow" for="switch-checkbox">
+            唤起弹窗
+        </label>
+        <div class="window">我是弹窗
+            <label class="closeWindow" for="switch-checkbox"></label>
+        </div>
+    </div>
+
+</body>
+
+</html>

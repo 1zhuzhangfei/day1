@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方框边界变化效果</title>
+</head>
+<style>
+    @property --degree {
+        syntax: "<angle>";
+        inherits: true;
+        initial-value: 0deg;
+    }
+
+    :root {
+        --degree: 0deg;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .bar {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        
+
+        position: absolute;
+        display: inline-block;
+        width: 600px;
+        height: 600px;
+        border-radius: 50px;
+
+        background-image: conic-gradient(from var(--degree), red, orange, yellow, orange, red);
+        animation-name: identifier;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    .bar::after {
+        content: "";
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 580px;
+        height: 580px;
+        border-radius: 40px;
+        position: relative;
+        display: flex;
+        background-color: white;
+
+    }
+
+    @keyframes identifier {
+        to {
+            --degree: 360deg;
+        }
+
+    }
+</style>
+
+<body>
+    <div class="bar"></div>
+
+
+</body>
+
+</html>

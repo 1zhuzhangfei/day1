@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    @property --range {
+        syntax: "<percentage>";
+        inherits: true;
+        initial-value: 0%;
+
+    }
+
+    :root {
+        --range: 0%
+    }
+
+    .baz {
+        width: 100vw;
+        height: 100vh;
+        background-image:linear-gradient(to right, red 0%, red var(--range), black var(--range), black 100%);
+        /* animation-name: swipe; */
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes swipe {
+        to {
+            --range: 100%
+        }
+
+    }
+</style>
+
+<body>
+    <div class="baz">
+        <button>start</button>
+        </div>
+</body>
+<script>
+    var btn = document.querySelector("button");
+    var baz = document.querySelector(".baz");
+    btn.addEventListener("click",function(){
+        baz.style.animationName = "swipe";
+    });
+
+
+</script>
+
+</html>

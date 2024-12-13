@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .bar {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        /* animation: name duration timing-function delay iteration-count direction fill-mode; animation: A1 1s cubic-bezier(.17,.67,.57,.92) 0 1; */
+        animation-name: A1;
+        animation-duration: 2s;
+        animation-timing-function: cubic-bezier(.17, .67, .57, .92);
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+
+
+    }
+
+    @keyframes A1 {
+        0% {
+            width: 100px;
+            height: 100px;
+            border-radius: 0;
+            background-color: orange;
+        }
+
+        50% {
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+            background-color: violet;
+
+        }
+
+        100% {
+            width: 100px;
+            height: 100px;
+            border-radius: 0;
+            background-color: orange;
+        }
+
+    }
+</style>
+
+<body>
+    <div class="bar"></div>
+</body>
+
+</html>

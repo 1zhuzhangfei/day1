@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体滚动效果</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .showText {
+        position: absolute;
+        overflow: hidden;
+        width: 300px;
+        height: 60px;
+        left: 50%;
+        top: 50%;
+        
+        transform: translate(-50%, -50%);
+        border-radius: 30px;
+        background-color: paleturquoise;
+    }
+    .textValue{
+        position: absolute;
+        text-align: center;
+        width: 300px;
+        line-height: 50px;;
+        list-style-type: none;
+        top: 70%;
+        animation-name: identifier;
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        
+    }
+
+    @keyframes identifier {
+        from{
+            transform: translateY(0);
+        }
+        to{
+            transform: translateY(-360px);
+
+        }
+        
+    }
+</style>
+
+<body>
+    <div class="showText">
+        <ul class="textValue">
+            <li>小明</li>
+            <li>小王</li>
+            <li>小李</li>
+            <li>小雨</li>
+            <li>小达</li>
+            <li>小刘</li>
+        </ul>
+    </div>
+    
+</body>
+
+</html>

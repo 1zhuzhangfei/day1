@@ -1,0 +1,44 @@
+@property --degree {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+}
+
+:root {
+    --degree: 0deg;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.bar {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.bar::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 250px;
+    background-image: conic-gradient(from var(--degree), red, orange, yellow,orange, red);
+    animation-name: identifier;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    filter: blur(50px);
+}
+
+@keyframes identifier {
+    to {
+        --degree: 360deg;
+    }
+
+}

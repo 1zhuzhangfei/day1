@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="code3.css">
+</head>
+<body>
+    
+</body>
+<script>
+    var isDark = true;
+    document.body.addEventListener("click",function(e){
+        this.style.setProperty("--x",`${e.x}px`);
+        this.style.setProperty("--y",`${e.y}px`);
+
+        if(isDark){
+            this.style.setProperty("--range",'0%');
+            this.style.animationName = "identifier";
+        
+        
+        }else{
+            this.style.setProperty("--range",'100%');
+            this.style.animationName = "identifier_1";
+
+        }
+        isDark = !isDark;
+
+    })
+</script>
+</html>
