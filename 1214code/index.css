@@ -1,0 +1,122 @@
+:root{
+    --month:12;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.main {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 400px;
+    margin: 5px;
+    /* 外边距 */
+    border: 1px solid rgb(189, 185, 185);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    /* 阴影效果 */
+}
+
+.calendar-main {
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 50px;
+    margin: 5px;
+}
+
+.calendar-prev {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    height: 30px;
+    width: 50px;
+    left: 5px;
+}
+
+.calendar-next {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    height: 30px;
+    width: 50px;
+    right: 5px;
+}
+
+.calendar-current {
+    position: absolute;
+    align-items: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.day-label{
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    width: 320px;
+}
+
+.calendar-date{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 320px;
+    height: 200px;
+    margin-top: 40px;
+
+}
+
+.calendar-date::after{
+    content: var(--month);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: gray;
+    width: 320px;
+    height: 200px;
+    /* margin-top: 40px; */
+
+}
+
+.calendar-date_base{
+    width: 45px;
+    height: 50px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.calendar-date_disable{
+    width: 45px;
+    height: 50px;
+    color: gray;
+    text-align: center;
+
+
+}
+.calendar-date_base:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 5px;
+}
