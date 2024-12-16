@@ -5,32 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
+    <style>
+        .date-picker>input{
+            cursor: pointer;
+        }
+    </style>
     
 </head>
 
 <body>
-    <div class="main">
-        <div class="calendar-main">
-            <button class="calendar-prev">上月</button>
-            <div class="calendar-current"></div>
-            <button class="calendar-next">下月</button>
-        </div>
-        <div class="day-label">
-            <div>日</div>
-            <div>一</div>
-            <div>二</div>
-            <div>三</div>
-            <div>四</div>
-            <div>五</div>
-            <div>六</div>
-        </div>
-        <div class="calendar-date">
-            
+    <div class="date-picker">
+        <input type="text" value="" placeholder="请选择日期">
+        <div class="main">
+            <div class="calendar-main">
+                <button class="calendar-prev">上月</button>
+                <div class="calendar-current"></div>
+                <button class="calendar-next">下月</button>
+            </div>
+            <div class="day-label">
+                <div>日</div>
+                <div>一</div>
+                <div>二</div>
+                <div>三</div>
+                <div>四</div>
+                <div>五</div>
+                <div>六</div>
+            </div>
+            <div class="calendar-date">
+                
+            </div>
         </div>
     </div>
+   
+    
     
 
     
 </body>
 <script src="index.js"></script>
+<script>
+
+
+    var datePicker =  document.querySelector(".date-picker");
+    var datePickerInner =  document.querySelector(".date-picker>input");
+    calendar.init({
+        choose:function(res){
+            datePickerInner.value = `${res.year}-${res.month}-${res.date}`
+            calendar.hider();
+        }
+    });
+    datePicker.addEventListener('click',function(e){
+        e.stopPropagation(); 
+        calendar.show();
+           
+    });
+    document.documentElement.addEventListener('click',function(){
+        calendar.hider();
+    })
+
+</script>
 </html>

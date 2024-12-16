@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    //把可以取到变量值的范围称为作用域
+
+    //作用域的作用：确定某个变量的值的取值/搜索范围和顺序
+    //全局变量
+    //全局作用域名
+
+
+
+    //函数的嵌套就会形成作用域的嵌套
+    //父函数 --> 父作用域
+    //子函数 --> 子作用域
+    //全局（没有被函数包裹的区域）  -->  顶级作用域/根作用域
+    //子作用域取不到变量的值 -->继续找父作用域 -->直到根作用域为止 -->报错
+    //静态作用域（取值范围从定义函数那一刻就决定了，和函数执行的状态没有关系）
+
+
+    //this的取值和函数执行紧密相连   和函数的嵌套/定义没有关系
+    //变量的取值和函数的嵌套/定义紧密相连   和函数的执行没有关系
+
+    function suibian() {
+        var count = 1;
+        function add() {
+            count++;
+        }
+        function echoCount() {
+            console.log(count);
+        }
+        return { add, echoCount }
+    }
+
+    var o = suibian();
+
+
+    //IIFE 自执行函数
+    //自执行函数不需要函数名
+    //函数定义的目的  为了至少调用一次
+    //函数名的作用就是为了取到函数来执行的
+    (function () {
+        var count = 1;
+        function add() {
+            count++;
+        }
+        function echoCount() {
+            console.log(count);
+        }
+        window.add = add;
+        window.echoCount = echoCount;
+     })()
+
+
+
+</script>
+
+</html>
