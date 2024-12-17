@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // js中对象的一个特殊的属性 __proto__(原型)
+        //原型作用：用来做属性和方法共享
+
+
+
+
+        var o = {
+            name: 'o',
+            a: 1
+        }
+        var o1 = {
+            name: 'o1',
+            b: 2
+        }
+        var o2 = {
+            name: 'o2',
+            c: 3
+        }
+
+        //o1是o的原型对象
+        o.__proto__ = o1;
+
+        //o2是o1的原型对象
+        o1.__proto__ = o2;
+
+
+        //工厂函数
+        (function (window) {
+
+            var 公共 = {
+                eat: function () {
+                    console.log("吃饭");
+                }
+            }
+
+            function createPerson(name, gender) {
+                var person = {
+                    name: name,
+                    gender: gender
+                }
+                person.__proto__ = 公共;
+                return person;
+            }
+
+            window.createPerson = createPerson;
+
+        })(window)
+
+        var 小明 = createPerson("小明", "蝻");
+
+
+
+    </script>
+    <script src="code1.js"></script>
+</body>
+
+</html>
