@@ -1,0 +1,46 @@
+.checkBtn {
+    width: 400px;
+    height: 200px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    position: absolute;
+    padding: 10px;
+    margin: 20px;
+    display: none;
+    z-index: 2;
+}
+
+.checkChoice {
+    display: flex;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+
+
+.cancelBtn {
+    width: 60px;
+    height: 40px;
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.sureBtn {
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: black;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}

@@ -16,7 +16,7 @@ body {
     display: none;
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 32%;
     transform: translate(-50%, -50%);
     width: 320px;
     height: 400px;
@@ -79,7 +79,7 @@ body {
 }
 
 .calendar-date {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

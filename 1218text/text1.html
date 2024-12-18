@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹窗效果</title>
+    <link rel="stylesheet" href="text1.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .mainBtn {
+        width: 100px;
+        height: 40px;
+        border: 1px solid gray;
+        background-color: white;
+        text-align: center;
+        border-radius: 10px;
+        line-height: 40px;
+        display: block;
+        z-index: 1;
+    }
+
+    /* #switch-checkbox {
+        display: none;
+
+    }
+
+    .switch-main {
+        cursor: pointer;
+    } */
+
+    .mainBtn:hover {
+        cursor: pointer;
+        background-color: whitesmoke;
+    }
+
+</style>
+
+
+<body>
+    <!-- <div class="mainBtn">
+        <input id="switch-checkbox" type="checkbox" class="switch-input">
+        <label class="switch-main" for="switch-checkbox">
+            唤起弹窗
+        </label>
+        
+    </div> -->
+    <button class="mainBtn">唤起弹窗</button>
+    <div class="checkBtn">
+        <h1>您确认执行这项操作吗？</h1>
+        <div class="checkChoice">
+            <button class="cancelBtn">取消</button>
+            <button class="sureBtn">确定</button>
+
+
+        </div>
+
+    </div>
+    
+</body>
+<script>
+    var mainBtn = document.querySelector(".mainBtn")
+    var checkBtn = document.querySelector(".checkBtn");
+    // mainBtn.onchange = function(){
+    //    if(this.checked){
+    //     mainBtn.style.display = "none";
+    //     checkBtn.style.display = "block";
+        
+
+    //    }
+    // }
+    mainBtn.addEventListener("click",function(){
+        mainBtn.style.display = "none";
+        checkBtn.style.display = "block";
+    
+    })
+
+    
+</script>
+
+</html>

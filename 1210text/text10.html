@@ -1,11 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>切换夜间模式，图形转圈变化</title>
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dark body {
+        background-color: black;
+    }
+
+    .light body {
+        background-color: white;
+    }
+
+    .dark .msg {
+        color: white;
+    }
+
+    .light .msg {
+        color: black;
+    }
+
+    .switch {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+
+    }
+
+    #switch-checkbox {
+        display: none;
+    }
+
+    .switch-back {
+
+        width: 200px;
+        height: 200px;
+        background-image: url(img/八角形.png);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotate(0deg);
+        transition: all ease-in-out 500ms;
+
+
+    }
+
+    .switch-main {
+        display: flex;
+
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        background-color: black;
+        cursor: pointer;
+
+    }
+
+    .switch-inner {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        margin-left: 10px;
+        margin-top: 10px;
+        background-color: gray;
+        transform: translateY(0);
+        transition: all ease-in-out 500ms;
+    }
+
+    .msg {
+        display: inline;
+    }
+
+    #switch-checkbox:checked~.switch-back {
+        transform: rotate(45deg);
+    }
+
+    #switch-checkbox:checked~.switch-back>.switch-main>.switch-inner {
+
+        transform: translateY(-15px);
+    }
+</style>
+
 <body>
-    
+    <div class="switch">
+        <input id="switch-checkbox" type="checkbox" class="switch-input">
+        <div class="switch-back">
+
+            <label class="switch-main" for="switch-checkbox">
+                <div class="switch-inner"></div>
+
+            </label>
+
+        </div>
+        <h1 class="msg">JavaScript</h1>
+    </div>
+
+
 </body>
+
+<script>
+    var selected = document.querySelector(".switch-input");
+    selected.onchange = function () {
+        document.documentElement.setAttribute('class', this.checked ? 'dark' : 'light');
+
+    }
+</script>
+
 </html>

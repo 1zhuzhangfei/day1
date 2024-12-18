@@ -52,14 +52,18 @@
 
     //初始化事件
     function bindEvent() {
-        var calenderRoot = document.querySelector(".calendar-main");
+        var calenderRoot = document.querySelector(".main");
         calenderRoot.addEventListener("click", function (e) {
             var dateInstance = new Date(currentYear, currentMonth - 1);
             var className = e.target.className;
+            var month = dateInstance.getMonth() + 1;
+            var year = dateInstance.getFullYear();
+            // console.log(dateInstance);
+            // console.log(className);
             var mainBody = document.querySelector(".calendar-date");
-            mainBody.innerHTML = "";
+            // var nowMonth =  document.querySelector(".calendar-current");
             if (className === "calendar-prev") {
-
+                mainBody.innerHTML = "";
                 dateInstance.setMonth(dateInstance.getMonth() - 1);
                 var newYear = dateInstance.getFullYear();
                 var newMonth = dateInstance.getMonth() + 1;
@@ -67,16 +71,21 @@
                 createCalendar(newYear, newMonth);
             }
             if (className === "calendar-next") {
+                mainBody.innerHTML = "";
                 dateInstance.setMonth(dateInstance.getMonth() + 1);
                 var newYear = dateInstance.getFullYear();
                 var newMonth = dateInstance.getMonth() + 1;
                 updateYearAndMonth(newYear, newMonth);
                 createCalendar(newYear, newMonth);
             }
-            if (className.indexOf("calendar-current") > -1) {
-                selected(e.target.innerText);
+            if (className.indexOf("calendar-date_base") > -1) {
+                // console.log(e.target.innerText);
+                hiderCalendar();
+                var date = e.target.innerText;
+                selected({ year, month, date });
 
             }
+
         });
     }
 

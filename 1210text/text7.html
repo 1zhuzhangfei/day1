@@ -34,6 +34,14 @@
             color: black;
         }
 
+        .main{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
         .switch-container {
             cursor: pointer;
 
@@ -58,8 +66,9 @@
             width: 100px;
             height: 50px;
             border-radius: 25px;
-            background-color: blueviolet;
+            background-color: darkgray;
             position: relative;
+            margin-left: 10px;
 
         }
 
@@ -84,15 +93,19 @@
 </head>
 
 <body>
-    <h1 class="msg">JavaScript</h1>
-    <div class="switch-container">
-        <input class="switch-input" id="switch-input" type="checkbox">
-        <label class="switch-main" for="switch-input">
-            <span class="open">开</span>
-            <span class="close">关</span>
-        </label>
+    <div class="main">
+        <h1 class="msg">JavaScript</h1>
+        <div class="switch-container">
+            <input class="switch-input" id="switch-input" type="checkbox">
+            <label class="switch-main" for="switch-input">
+                <span class="open">开</span>
+                <span class="close">关</span>
+            </label>
+
+        </div>
 
     </div>
+
 </body>
 <script>
     var switchButton = document.querySelector('.switch-input');
