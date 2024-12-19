@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="lib/animate.css" rel="stylesheet">
+    <script src="lib/tailwind3.4.16.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.js"></script> -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+      </style>
+</head>
+
+<body class="w-full h-full bg-slate-300">
+    <!-- <div class="w-48 h-52 bg-red-500 rounded-3xl text-center">
+        tailwind
+    </div>
+
+    <div class="flex items-center justify-center">
+        <div class="w-20 h-20 bg-yellow-300"></div>,
+        <div class="w-20 h-20 bg-blue-300"></div>
+        <div class="w-20 h-20 bg-slate-400"></div>
+        <div class="w-20 h-20 bg-primary"></div>
+    </div> -->
+    <!-- <div class="h-11 w-11 bg-white dark:w-10 dark:h-10 dark:rounded-2xl dark:bg-black"></div> -->
+    <!-- <div class="w-50 h-50 bg-red-500 text-50">
+        tailwind
+    </div> -->
+    <!-- <div class="w-screen h-300 border flex flex-wrap">
+        <div class="lg:w-1/6 md:w-1/3 sm:w-1/2 w-full h-300 bg-red-50"></div>
+        <div class="lg:w-1/6 md:w-1/3 sm:w-1/2 w-full h-300 bg-red-100"></div>
+        <div class="lg:w-1/6 md:w-1/3 sm:w-1/2 w-full h-300 bg-red-200"></div>
+        <div class="lg:w-1/6 md:w-1/3 sm:w-1/2 w-full h-300 bg-red-300"></div>
+        <div class="lg:w-1/6 md:w-1/3 sm:w-1/2 w-full h-300 bg-red-400"></div>
+        <div class="lg:w-1/6 md:w-1/3 sm:w-1/2 w-full h-300 bg-red-500"></div>
+    </div> -->
+    <h1 class="animate__animated animate__bounce animate__infinite">操作弹框</h1>
+    <!-- <div
+        class="w-300 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-white rounded-lg shadow-md p-4">
+        <div class="text-20">标题</div>
+        <div>内容</div>
+        <div class="flex justify-end">
+            <div class="py-2 px-3 border rounded-lg bg-black text-white">确定</div>
+            <div class="py-2 px-3 border rounded-lg  ml-2 cursor-pointer">取消</div>
+        </div>
+    </div> -->
+
+
+</body>
+
+<script src="config.js"></script>
+<script src="dialog.js"></script>
+<script>
+
+    //参数对象的属性中有必传、可选
+
+
+    //对象参数 配置对象
+    createDialog({
+        title: "提示",
+        message: "确定进行该项操作吗？",
+        buttons: {
+            confirm: {
+                text: '确定'
+            },
+            cancel: {
+                text: '取消'
+            },
+
+            //确定的回调函数
+            success: function () {
+                console.log("确定已被点击");
+            },
+            //取消的回调函数
+            fail: function () {
+                console.log("取消已被点击");
+            }
+        }
+    });
+</script>
+
+</html>
