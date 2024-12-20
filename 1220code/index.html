@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="tailwind3.4.16.js"></script>
+
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .drag-item:hover {
+        filter: brightness(50%);
+    }
+
+    img.selected {
+        border: 1px solid gray;
+
+    }
+
+    /* .item {
+        width: 100px;
+        height: 100px;
+        background-color: aquamarine;
+        cursor: pointer;
+    } */
+</style>
+
+<body>
+    <div class="w-screen h-screen flex items-center">
+        <div class="h-screen w-96 bg-red-300 drag-container">
+            <img class="drag-item hover:cursor-pointer" src="img/u=367850323,338187481&fm=253&fmt=auto.webp" alt="">
+            <img class="drag-item hover:cursor-pointer" src="img/u=1960153582,477579336&fm=253&fmt=auto.webp" alt="">
+
+        </div>
+        <div class="h-screen flex-1 bg-red-500 workbench">
+            <img class="w-5 h-5 dragImg" src="img/旋转.png">
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+
+    var container = document.querySelector(".drag-container");
+    var workbench = document.querySelector(".workbench");
+    var target = null;
+    var workbenchPositionInfo = workbench.getBoundingClientRect();
+    container.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        var startX = e.x;
+        var startY = e.y;
+        var distanceX = e.offsetX;
+        var distanceY = e.offsetY;
+        var position = e.target.getBoundingClientRect();
+        target = e.target.cloneNode(true);
+        target.style.cssText = `position:absolute;top:${target.top}px;left:${target.left}px`;
+        document.body.appendChild(target);
+
+        function move(e) {
+            var endX = e.x;
+            var endY = e.y;
+            var distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2))
+            var ratio = 1 + distance / window.outerWidth;
+
+            // target.style.transform = `translate(${e.x - distanceX}px,${e.y - distanceY}px)`;
+            target.style.cssText = `position:absolute;opacity:0.6;left:${e.x - distanceX}px;top:${e.y - distanceY}px;transform:scale(${ratio >= 1.4 ? 1.4 : ratio});transition: transform 0.1s linear;transform-origin: center center`;
+
+        }
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', function (e) {
+
+
+            if (e.x > workbenchPositionInfo.left && e.y > workbenchPositionInfo.top) {
+                target.style.opacity = 1;
+                target.addEventListener('mousedown', function (e) {
+
+
+                    console.log("目标图片被选中");
+                    e.preventDefault();
+                    document.addEventListener('mousemove', move);
+
+                });
+                target.addEventListener('mouseover', function (e) {
+                    target.classList.add("selected");
+                });
+                target.classList.remove("selected");
+
+
+
+            } else {
+                target.style.cssText = `position:absolute;opacity:1;left:${position.left}px;top:${position.top}px;transform:scale(1);transition:all ease-in 200ms`;
+
+                target.addEventListener('transitionend', function () {
+                    target.remove();
+                })
+
+
+            }
+            document.removeEventListener('mousemove', move);
+
+            let isDragging = false;
+            let startAngle = 0;
+            let currentRotation = 0;
+
+            const img = document.querySelector('.dragImg');
+
+            function getMousePosition(event) {
+                const rect = img.getBoundingClientRect();
+                return {
+                    x: event.clientX - rect.left,
+                    y: event.clientY - rect.top
+                };
+            }
+
+            function calculateAngle(mousePos) {
+                return Math.atan2(mousePos.y - startY, mousePos.x - startX) * (180 / Math.PI);
+            }
+
+            function handleMouseDown(event) {
+                isDragging = true;
+                const pos = getMousePosition(event);
+                startX = pos.x;
+                startY = pos.y;
+                startAngle = calculateAngle(pos);
+            }
+
+            function handleMouseMove(event) {
+                if (!isDragging) return;
+
+                const pos = getMousePosition(event);
+                const endAngle = calculateAngle(pos);
+                const angleDifference = endAngle - startAngle;
+
+                // 更新当前旋转角度
+                currentRotation += angleDifference;
+                target.style.transform = `rotate(${currentRotation}deg)`;
+
+                // 更新起始角度以防止累积偏差
+                startAngle = endAngle;
+            }
+
+            function handleMouseUp() {
+                isDragging = false;
+            }
+
+            img.addEventListener('mousedown', handleMouseDown);
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+
+        })
+
+    });
+
+
+
+
+
+</script>
+
+<!-- <script>
+    var item = document.querySelector('.item');
+    var distanceX = 0;
+    var distanceY = 0;
+
+
+    function moveCallback(e) {
+        console.log(e.x, e.y);
+        item.style.transform = `translate(${e.x - distanceX}px,${e.y - distanceY}px)`;
+        item.style.cursor = 'grabbing';
+
+    };
+
+    item.addEventListener("mousedown", function (e) {
+        distanceX = e.offsetX;
+        distanceY = e.offsetY;
+        item.style.cursor = 'grab';
+
+        document.addEventListener("mousemove", moveCallback)
+        document.addEventListener("mouseup", function () {
+            item.style.cursor = 'pointer';
+            document.removeEventListener("mousemove", moveCallback);
+        })
+    })
+</script> -->
+
+</html>
