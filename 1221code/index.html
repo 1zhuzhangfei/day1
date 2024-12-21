@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>底部抽屉</title>
+    <script src="tailwind3.4.16.js"></script>
+</head>
+
+<body>
+    <div class="h-80 left-0 right-0 bottom-0 absolute bg-gray-700 text-white shadow-md bottom-sheet">
+        <div>
+            <div class="bg-gray-400 w-7 h-2 mt-1 rounded-sm ml-auto mr-auto move-bottom-sheet"></div>
+            <p>抽屉内容</p>
+            <button class="close-bottom-sheet absolute w-20 h-8 right-2 bottom-2 bg-black rounded-md">关闭抽屉</button>
+        </div>
+    </div>
+    <div class="w-screen h-screen flex justify-center items-center">
+        <button class="w-52 h-14 bg-slate-400 rounded-3xl open-bottom-sheet">
+            打开底部抽屉
+        </button>
+    </div>
+</body>
+<script>
+    var bottomSheet = document.querySelector(".bottom-sheet");
+    console.log(bottomSheet);
+    var open = document.querySelector(".open-bottom-sheet");
+    var close = document.querySelector(".close-bottom-sheet")
+    function openBottomSheet() {
+        bottomSheet.style.display = "block";
+
+    }
+    function closeBottomSheet() {
+        bottomSheet.style.display = "none";
+    }
+
+    var moveBottomSheet = document.querySelector(".move-bottom-sheet");
+    // moveBottomSheet.addEventListener("mousedown", function (e) {
+    //     // e.preventDefault();
+    //     var startX = e.x;
+    //     var startY = e.y;
+    //     console.log(startX, startY);
+    //     var rect = moveBottomSheet.getBoundingClientRect();
+    //     console.log(rect);
+
+    //     // function move(e) {
+
+    //     //     console.log(endX,endY);
+    //     // }
+    //     document.addEventListener('mousemove', function (e) {
+    //         var endX = e.x;
+    //         var endY = e.y;
+    //         var moveY = endY - startY;
+    //         console.log(moveY);
+    //         bottomSheet.className = `height:${moveY}px left-0 right-0 bottom-0 absolute bg-gray-700 text-white shadow-md transition: transform 0.1s linear;bottom-sheet`;
+    //         console.log(bottomSheet);
+    //     });
+
+
+    // })
+
+    let isDragging = false;
+    let startY;
+    let startTop;
+    moveBottomSheet.addEventListener('touchstart', startDrag);
+    moveBottomSheet.addEventListener('mousedown', startDrag);
+
+    function startDrag(e) {
+        isDragging = true;
+        startY = e.touches ? e.touches[0].pageY : e.pageY;
+        startTop = parseInt(window.getComputedStyle(bottomSheet).getPropertyValue('transform').split(',')[5]) || 0;
+        bottomSheet.style.transition = 'none';
+        window.addEventListener('touchmove', onDrag);
+        window.addEventListener('mousemove', onDrag);
+        window.addEventListener('touchend', endDrag);
+        window.addEventListener('mouseup', endDrag);
+    }
+
+    function onDrag(e) {
+        if (!isDragging) return;
+
+        let moveY = e.touches ? e.touches[0].pageY : e.pageY;
+        let newTop = startTop + (moveY - startY);
+
+        // Limit the dragging within certain bounds
+        if (newTop > 0 && newTop < window.innerHeight - bottomSheet.offsetHeight) {
+            bottomSheet.style.transform = `translateY(${newTop}px)`;
+        }
+    }
+
+    function endDrag() {
+        isDragging = false;
+        window.removeEventListener('touchmove', onDrag);
+        window.removeEventListener('mousemove', onDrag);
+        window.removeEventListener('touchend', endDrag);
+        window.removeEventListener('mouseup', endDrag);
+
+        // Optionally snap to open/close states based on drag distance
+        const finalPosition = parseInt(window.getComputedStyle(bottomSheet).getPropertyValue('transform').split(',')[5]);
+        if (finalPosition < window.innerHeight / 2 - bottomSheet.offsetHeight / 2) {
+            closeBottomSheet();
+        } else {
+            openBottomSheet();
+        }
+    }
+
+    open.addEventListener("click", openBottomSheet);
+    close.addEventListener("click", closeBottomSheet);
+
+</script>
+
+</html>

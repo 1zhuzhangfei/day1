@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+</body>
+<script src="throttle.js"></script>
+
+<script>
+
+    //基本数据类型 和 引用数据类型
+
+    //函数的call方法也是去执行函数
+    //函数的call方法可以改变函数执行时this的指向（call方法的第一个参数）
+
+
+
+    //js中所有数据都具备一个方法 toString 但是只有纯对象的toString才能正确的返回不同数据的数据类型
+
+    //（{}）.toString 方法可以返回调用者的数据类型的信息的
+    function typeOf(data) {
+        return {}.toString.call(data).slice(8, -1).toLowerCase();
+    }
+
+
+    //apply也是方法的借调 和call只有一个区别
+    //被借调的函数 传递参数时，传递的方式不一样
+
+    var elements = document.querySelectorAll("div");
+    var arr1 = [].slice.call(elements, 0);
+    console.log(arr1);
+
+    var arr2 = [].slice.apply(elements, [0]);
+    console.log(arr2);
+
+
+    var list = [
+        1,2,3,4,5,6,7,8,9,50,60,90
+    ];
+
+    var maxValue = Math.max.apply(list,list);
+    console.log(maxValue);
+
+
+    //bind 和call和apply的区别
+    //bind保存this指向 但是不会立即调用
+
+
+    //什么情况下使用bind？
+    //当默认的this指向不满足要求 但是希望在改变this指向的同时 不立即执行函数
+    //什么情况下使用call？
+    //当默认的this指向不满足要求 但是希望在改变this指向的同时立即执行函数，且参数个数有限 参数不需要以数组的形式组织
+    //什么情况下使用apply？
+    //当默认的this指向不满足要求 但是希望在改变this指向的同时立即执行函数，且参数个数无限制 参数需要以数组的形式组织
+
+
+</script>
+
+</html>
