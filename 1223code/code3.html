@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    //类的继承
+
+    function Phone(brand, width, height, weight) {
+        this.brand = brand;
+        this.width = width;
+        this.height = height;
+        this.weight = weight;
+
+    }
+
+    Phone.prototype = {
+        boot: function () {
+            console.log("开机");
+        },
+        shudown: function () {
+            console.log("关机");
+        },
+        call: function () {
+            console.log("打电话");
+        },
+        sendMsg: function () {
+            console.log("发消息");
+        },
+    }
+
+    function HuaweiPhonePro(width, height, weight) {
+        //复用继承的那个类的实例属性和方法
+        Phone.call(this, "huawei", width, height, weight)
+
+        this.os = "harmony os";
+    }
+
+    HuaweiPhonePro.prototype = {
+        constructor: HuaweiPhonePro,
+        //复用 继承的那个类的原型属性和方法
+        sendSatelliteMsg: function () {
+            console.log("发卫星消息");
+        },
+    }
+
+    function inherit(Sup, Sub) {
+        //把父类的原型对象赋值给 子类的原型对象的原型
+        Sub.prototype.__proto__ = Sup.prototype;
+    }
+
+
+    //寄生组合式继承
+
+    inherit(Phone, HuaweiPhonePro);
+    var s1 = new HuaweiPhonePro();
+    console.log(s1);
+
+</script>
+
+</html>

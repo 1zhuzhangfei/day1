@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    打车时，可以打专车或者快车。
+任何车都有车牌号和名称。
+不同车价格不同，快车每公里1元，专车每公里2元。
+行程开始时，显示车辆信息。
+行程结束时，显示打车金额（假定行程就5公里）。
+    */
+
+    // function Car(number, name) {
+    //     this.number = number;
+    //     this.name = name;
+    // }
+    // Car.prototype = {
+    //     begin: function (car) {
+    //         return {
+    //             number: car.number,
+    //             name: car.name
+    //         }
+
+    //     },
+    //     end: function (price) {
+    //         return price * 5;
+    //     }
+    // }
+
+    // function inherit(Sup, Sub) {
+    //     //把父类的原型对象赋值给 子类的原型对象的原型
+    //     Sub.prototype.__proto__ = Sup.prototype;
+    // }
+
+    // function SpeedCar(number) {
+    //     Car.call(number, "快车");
+
+    // }
+
+
+    // SpeedCar.prototype = {
+    //     constructor: SpeedCar,
+    // }
+
+    // inherit(Car, SpeedCar);
+
+
+    function Car(brand, number) {
+        this.brand = brand;
+        this.number = number;
+    }
+    function FastCar(brand, number) {
+        Car.call(this, brand, number);
+        this.price = 1;
+    }
+    function ProfessionalCar(brand, number) {
+        Car.call(this, brand, number);
+        this.price = 2;
+    }
+
+    function Trip(car, distance) {
+        this.car = car;
+        this.distance = distance;
+    }
+    Trip.prototype = {
+        start: function () {
+            console.log(this.car.brand, this.car.number);
+
+        },
+        end: function () {
+            console.log(this.car.price * this.distance);
+        }
+
+    }
+
+    var car1 = new FastCar("兰博基尼", "京A88888");
+    var trip1 = new Trip(car1, 10);
+    trip1.start();
+    trip1.end();
+
+
+
+    /*
+    某停车场，分3层，每层100车位。
+每个车位都能监控到车辆的驶入和离开。
+车辆进入前,显示每层的空余车位数。
+车辆进入时,摄像头可识别车牌号和时间。
+车辆出来是,出口显示车牌号和停车时长。
+    */
+    function Station(floor, space) {
+        this.floor = floor;
+        this.space = space;
+
+    }
+    function OneFloor() {
+        Station.call(this, 1, 100);
+
+    }
+    function TwoFloor() {
+        Station.call(this, 2, 100);
+
+    }
+    function ThreeFloor() {
+        Station.call(this, 3, 100);
+
+    }
+
+    function Car(number, time) {
+        this.number = number;
+        this.time = time;
+
+    }
+
+    Car.prototype = {
+        before: function () {
+            
+        },
+        inthere: function () {
+
+        },
+        after: function () {
+
+        }
+
+    }
+
+
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function MySet() {
+        this._storage = Object.create(null);
+
+    }
+
+    MySet.prototype = {
+        constructor: MySet,
+
+        //向集合中添加一个新元素
+        add: function (element) {
+            if (!(this.has(element))) {
+                var key = (typeof element === "object" && element !== null) ? JSON.stringify(element) : element;
+                this._storage[key] = element;
+            }
+            return this;
+
+        },
+        //从集合中移除一个元素
+        delete: function (element) {
+            if (this.has(element)) {
+                var key = (typeof element === "object" && element !== null) ? JSON.stringify(element) : element;
+                delete this._storage[key];
+                return true;
+            }
+        },
+
+        //如果元素在集合中,返回true，否则返回false;
+        has: function (element) {
+            var key = (typeof element === "object" && element !== null) ? JSON.stringify(element) : element;
+            return this._storage.hasOwnProperty(key);
+
+
+        },
+        //移除集合中的所有元素
+        clear: function () {
+            this._storage = Object.create(null);
+        },
+        //返回集合所包含元素的数量   与数组的length属性类似
+        size: function () {
+
+
+        },
+
+        //返回一个包含集合中所有值的数组
+        values: function () { },
+
+    }
+    // console.log(Object.prototype);
+</script>
+
+</html>
