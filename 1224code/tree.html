@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扁平化数据转tree</title>
+</head>
+<style>
+    .tree-container ul {
+        list-style-type: none;
+        padding-left: 20px;
+        border-top: 1px solid black;
+    }
+
+    .tree-container {
+        cursor: pointer;
+    }
+
+    .tree-container li {
+        margin-bottom: 5px;
+        
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="treeContainer" class="tree-container"></div>
+
+</body>
+<script>
+    // 扁平数据
+    const data = [
+        {
+            "id": "1",
+            "parentId": null,
+            "label": "一级 1"
+        },
+        {
+            "id": "2",
+            "parentId": "1",
+            "label": "二级 1-1"
+        },
+        {
+            "id": "3",
+            "parentId": "2",
+            "label": "三级 1-1-1"
+        },
+        {
+            "id": "4",
+            "parentId": null,
+            "label": "一级 2"
+        },
+        {
+            "id": "5",
+            "parentId": "4",
+            "label": "二级 2-1"
+        },
+        {
+            "id": "6",
+            "parentId": "5",
+            "label": "三级 2-1-1"
+        },
+        {
+            "id": "7",
+            "parentId": "4",
+            "label": "二级 2-2"
+        },
+        {
+            "id": "8",
+            "parentId": "7",
+            "label": "三级 2-2-1"
+        },
+        {
+            "id": "9",
+            "parentId": null,
+            "label": "一级 3"
+        },
+        {
+            "id": "10",
+            "parentId": "9",
+            "label": "二级 3-1"
+        },
+        {
+            "id": "11",
+            "parentId": "10",
+            "label": "三级 3-1-1"
+        },
+        {
+            "id": "12",
+            "parentId": "9",
+            "label": "二级 3-2"
+        },
+        {
+            "id": "13",
+            "parentId": "12",
+            "label": "三级 3-2-1"
+        }
+    ]
+
+    function buildTree(flatData, parentId = null) {
+        let result = [];
+        // 遍历每个节点，找到所有与 parentId 匹配的节点
+        flatData.forEach(node => {
+            if (node.parentId === parentId) {
+                // 递归调用，查找该节点的子节点
+                const children = buildTree(flatData, node.id);
+
+                // 将子节点添加到当前节点中
+                if (children.length > 0) { 
+                    node.children = children;
+                }
+                // 将当前节点加入结果数组
+                result.push(node);
+            }
+        });
+
+        return result;
+    }
+
+
+    function createTreeHTML(tree, level = 0) {
+        if (!tree || tree.length === 0) return '';
+
+        return `
+    <ul>
+      ${tree.map(node => `
+        <li>
+          <span>${node.label}</span>
+          ${createTreeHTML(node.children, level + 1)}
+        </li>
+      `).join('')}
+    </ul>
+  `;
+    }
+
+    function addInteractivity() {
+        document.querySelectorAll('.tree-container li > span').forEach(span => {
+            span.addEventListener('click', function () {
+                this.parentNode.querySelector('ul')?.classList.toggle('hidden');
+            });
+        });
+    }
+
+    const tree = buildTree(data);
+    console.log(JSON.stringify(tree, null, 2));
+    document.getElementById('treeContainer').innerHTML = createTreeHTML(tree);
+    addInteractivity();
+
+
+
+
+</script>
+
+</html>

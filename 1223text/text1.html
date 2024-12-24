@@ -10,7 +10,69 @@
 </head>
 
 <body>
+    <div class="h-screen w-screen items-center flex">
+        <div class="w-1/6 h-screen bg-slate-500 smallImg">
+            <img class="glass-item hover:cursor-pointer" src="img/p2510460935.jpg" alt="">
+            <img class="glass-item hover:cursor-pointer" src="img/p2510461047.jpg" alt="">
+
+        </div>
+
+        <div class="w-2/6 h-screen bg-slate-600 bigImg">
+            <img class="big-item hover:cursor-pointer" src="img/p2510460935.jpg" alt="">
+        </div>
+        <div class="w-1/2 h-screen bg-slate-300 glassImg">
+            <div
+                class="magnifier relative w-56 h-56 top-0 left-0 hidden border-solid border-2 border-blue-600 bg-white pointer-events-none">
+            </div>
+        </div>
+    </div>
 
 </body>
+<script>
+
+    var bigImage = document.querySelector('.big-item');
+    var smalls = document.querySelectorAll('.glass-item');
+
+    smalls.forEach(small => {
+        // 给每个小图绑定点击事件
+        small.addEventListener('click', () => {
+            // 设置大图的 src 为点击的小图的 src
+            bigImage.src = small.src;
+        });
+    });
+    var magnifier = document.querySelector('.magnifier');
+
+    bigImage.addEventListener('mousemove', function (e) {
+
+
+        var rect = this.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var bgPosX = (x * -2) + 'px';
+        var bgPosY = (y * -2) + 'px';
+
+        magnifier.style.backgroundImage = `url(${this.src})`;
+        magnifier.style.backgroundPosition = `${bgPosX} ${bgPosY}`;
+        magnifier.style.backgroundSize = `500% 500%`;
+        magnifier.style.backgroundRepeat = "no-repeat";
+
+        magnifier.classList.remove('hidden');
+
+
+        // magnifier.style.left = `${e.pageX + 10}px`;
+        // magnifier.style.top = `${e.pageY + 10}px`;
+
+
+    });
+
+
+    bigImage.addEventListener('mouseleave', function () {
+        magnifier.classList.add('hidden');
+    });
+
+
+
+
+</script>
 
 </html>

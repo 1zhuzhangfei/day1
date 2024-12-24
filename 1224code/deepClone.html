@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    //简单数据类型 和 引用数据类型
+    function typeOf(target) {
+        return Object.prototype.toString.call(target).slice(8, -1).toLowerCase();
+    }
+
+
+    function deepClone(source) {
+        var sourceType = typeOf(source);
+        if (sourceType === "object") {
+            var res = {};
+            for (var key in source) {
+                res[key] = deepClone(source[key]);
+
+            }
+            return res;
+        }
+        if (sourceType === "array") {
+            var res = [];
+            for (var i = 0; i < source.length; i++) {
+                res.push(deepClone(source[i]));
+
+            }
+            return res;
+
+        }
+        if (sourceType === "function") {
+            return new Function(source.toString());
+        }
+        if (sourceType === "date") {
+            return new Date(source.getTime());
+        }
+        if (sourceType === "regexp") {
+            return new RegExp(source.toString());
+        }
+        return source;
+    }
+
+    // var a = {
+    //     count: 1,
+    //     props: {
+    //         index: 1,
+    //         msg: "abc",
+    //     },
+    // };
+    // var b = deepClone(a);
+    // a.count++;
+    // b.count++;
+
+</script>
+
+</html>

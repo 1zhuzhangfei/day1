@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组扁平化</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    //广度优先
+    function flat(arr) {
+        var res = []
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] instanceof Array) {
+                Array.prototype.push.apply(arr, arr[i]);
+            } else {
+                res.push(arr[i]);
+            }
+        }
+        return res;
+
+    }
+
+
+
+    //深度优先
+    function flatDeep(arr, res) {
+        res = res || [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] instanceof Array) {
+                flatDeep(arr[i],res);
+            } else {
+                res.push(arr[i]);
+            }
+        }
+        return res;
+
+    };
+    console.log(flatDeep([1, [2, 3], [4, 5, 6], [7, [8, [9]]]]));
+</script>
+
+</html>
