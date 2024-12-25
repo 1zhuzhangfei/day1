@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的原型中的常用方法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //熟悉数组的原型中的常用方法
+
+
+    //构造函数的作用是方便产生一类具有相同特征的对象
+    //原型的作用是为了给某一个构造函数的实例提供共享的方法 以达到节约空间的目的
+
+    //构造函数（构造函数 原型（显式原型 隐式原型） 实例） this的指向
+    //new关键字做了哪些事情
+    //1.新建一个对象
+    //2.this指向新建的那个对象
+    //3.将新建的那个对象的__proto__属性指向构造函数的prototype静态属性
+    //4.返回该对象
+
+
+    //js内置的Array
+    var a1 = new Array();
+    var a2 = [];
+
+    //通过构造函数获取数组的原型对象
+    Array.prototype;
+
+    //通过数组实例获取数组的原型对象
+    [].__proto__;
+
+    // find(从前往后)     findLast(从后往前)
+    // findIndex     findLastIndex
+    // forEach
+    // map
+    // some
+    // every
+    // filter
+    // flat
+    // includes
+    // reduce   reduceRight
+
+
+    // find(从前往后)     findLast(从后往前)  查找符合条件的第一个元素
+    //其中条件用函数表达
+    var arr1 = [2, 4, 4, 5, 6, 7, 8, 9, 10];
+    var res1 = arr1.find(function (value, index, obj) {
+        return value % 2 === 1;
+    }
+    )
+    console.log(res1);  // 5
+
+    var res2 = arr1.findLast(function (value, index, obj) {
+        return index % 2 === 1;
+    });
+    console.log(res2); // 9
+
+    var res3 = arr1.find(function (value, index) {
+        return (value + index) % 2 === 0;
+    })
+    console.log(res3);   // 2
+
+    // findIndex     findLastIndex    查找符合条件的第一个元素对应的索引
+    var arr2 = [
+        { name: 'a', age: 11 },
+        { name: 'b', age: 20 },
+        { name: 'c', age: 21 },
+        { name: 'd', age: 20 },
+        { name: 'e', age: 17 },
+        { name: 'f', age: 18 },
+        { name: 'g', age: 17 }];
+    var res21 = arr2.findIndex(function (value) {
+        return value.age >= 18; 
+    })
+    var res22 = arr2.findLastIndex(function (value) {
+        return value.age >= 18; 
+    })
+    console.log(res21);    // 1
+    console.log(res22);    // 5
+
+
+
+</script>
+<script src="array.js"></script>
+<script src="forEach.js"></script>
+<script src="map.js"></script>
+<script src="some.js"></script>
+<script src="every.js"></script>
+
+</html>

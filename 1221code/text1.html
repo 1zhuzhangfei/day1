@@ -4,18 +4,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>设计与开发机构</title>
-    <script src="tailwind3.4.16.js"></script>
-    <script src="text1.js"></script>
-</head>
-<style>
-</style>
+    <title>Document</title>
+    <link rel="stylesheet" href="text1.css">
 
-<body class="h-6055 w-1920 bg-white">
-    <div class="one w-1920 h-1428 bg-gradient-to-r to-violet-500 from-fuchsia-500">
+    <script src="./lodash.min.js"></script>
+    <script src="tailwind3.4.16.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="top_outer text-white">
+        <div class="flex space-x-4 justify-evenly items-center h-149 text-center">
+            <div class="text-28 text-center leading-149 ml-375">LOGO</div>
+            <div>
+                <ul class="flex justify-evenly items-center w-428">
+                    <li class="w-87 h-29 rounded-15 bg-white text-[#7E44FE] leading-29">主页</li>
+                    <li class="h-29 leading-29">关于</li>
+                    <li class="h-29 leading-29">服务</li>
+                    <li class="h-29 leading-29">团队</li>
+                    <li class="h-29 leading-29">博客</li>
+                    <li class="h-29 leading-29">联系我们</li>
+                </ul>
+            </div>
+            <div class="gap-3">
+                <button>登录</button>
+                <button class="w-180 h-56 rounded-28 leading-56 bg-white text-[#673DFC] mx-[38px]">免费注册</button>
+            </div>
+        </div>
+        <hr class="opacity-50">
+        <div class="overflow-hidden w-1920 h-[1279px] relative ">
+            <div class="banner-left w-987 h-987 rounded-[50%] left-[-413px] bottom-0 absolute">
+                <div class="w-[100%] h-[100%] relative">
+                    <div class="w-36 h-6 rounded-[3px] top-[258px] bg-[#663CFC] absolute right-[161px]"></div>
+                    <div class="w-36 h-6 rounded-[3px] top-[258px] bg-white absolute right-[110px]"></div>
+                    <div class="w-36 h-6 rounded-[3px] top-[258px] bg-[#663CFC] absolute right-[59px]"></div>
+                </div>
+            </div>
+            <div class="banner-right w-1159 h-[1159px] rounded-[50%] right-[-458px] bottom-0 absolute"></div>
+            <div class="w-183 h-16 absolute left-[376px] top-[124px] font-normal text-white">我们很难，我们付出辛苦</div>
+            <div class="w-616 h-186 absolute left-[373px] top-[149px] font-extrabold text-[88px] leading-[100px]">
+                我们是一家设计和开发机构。
+            </div>
+            <div class="w-540 h-45 absolute left-[374px] top-[400px] font-normal text-[18px]">Lorem ipsum dolor sit
+                amet,
+                consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+            <div class="w-1170 h-1 bg-white absolute top-[682px] right-[375px]"></div>
+
+            <div class="w-370 h-523 bg-white absolute bottom-[74px] left-[375px] z-10 boxShadow">
+                <div class="w-78 h-78 bg-[url(./images/levels.png)] relative top-[53px] left-[40px]"></div>
+                <div
+                    class="w-99 h-23 absolute top-[154px] left-[39px] font-normal leading-[23px] text-[#191919] text-[24px]">
+                    Web开发
+                </div>
+                <div
+                    class="w-255 h-46 absolute top-[193px] left-[46px] font-normal leading-[23px] text-[#191919] text-[17px]">
+                    感谢您下载XX网平台上提供的UI设计模板!XX网是正版商业图库。
+                </div>
+                <div class="w-104 h-17 absolute top-[314px] left-[41px]">
+                    <span class="text-[#663CFC]">☒</span>&nbsp;&nbsp;
+                    <span class="text-[18px] text-[#191919]">Web 设计</span>
+                </div>
+                <div class="w-104 h-17 absolute top-[356px] left-[41px]">
+                    <span class="text-[#663CFC]">☒</span>&nbsp;&nbsp;
+                    <span class="text-[16px] text-[#663CFC]">在线目录</span>
+                </div>
+                <div class="w-104 h-17 absolute top-[397px] left-[41px]">
+                    <span class="text-[#663CFC]">☒</span>&nbsp;&nbsp;
+                    <span class="text-[16px] text-[#663CFC]">门户系统</span>
+                </div>
+                <div class="w-65 h-15 absolute top-[469px] left-[40px]">
+                    <span class="text-[16px] text-[#663CFC]">阅读更多</span>
+                </div>
+            </div>
+            <div class="w-78 h-78 absolute top-[740px] left-[791px] bg-[url(./images/pencil-case.png)]"></div>
+            <div class="w-96 h-23 absolute top-[840px] left-[805px] text-[24px] text-[#FEFEFE] font-normal">平面设计</div>
+            <div class="w-255 h-46 absolute top-[879px] left-[804px] text-[17px] text-[#FEFEFE] font-normal">
+                感谢您下载XX网平台上提供的UI设计模板!XX网是正版商业图库。
+            </div>
+
+            <div class="w-78 h-78 absolute top-[740px] left-[1200px] bg-[url(.images/target (1).png)]"></div>
+            <div class="w-96 h-23 absolute top-[840px] left-[1206px] text-[24px] text-[#FEFEFE] font-normal">网络营销</div>
+            <div class="w-255 h-46 absolute top-[879px] left-[1211px] text-[17px] text-[#FEFEFE] font-normal">
+                感谢您下载XX网平台上提供的UI设计模板!XX网是正版商业图库。
+            </div>
+        </div>
+        <div class="trapezoid absolute top-[1185px]">
+            <div class="w-85 h-16 absolute left-[916px] top-[274px] text-[16px] text-[#010101] font-normal">关于我们的</div>
+            <div
+                class="w-549 h-98 absolute left-[690px] top-[326px] text-[46px] text-[#010101] font-normal text-center">
+                我们是Startuply,我们创造<br>高效的网页设计和品牌。
+            </div>
+            <div
+                class="w-1050 h-46 absolute left-[448px] top-[484px] text-[18px] text-[#010101] font-normal text-center">
+                感谢您下载XX网平台上提供的UI设计模板！XX网是正版商业图库。<br>
+                感谢您下载XX网平台上提供的UI设计模板!XX网是正版商业图库。感谢您下载XX网平台上提供的UI设计模板!XX网是正版商业图库。
+            </div>
+            <div class="w-64 h-16 absolute left-[927px] top-[614px] text-[#663CFC] text-[16px]">阅读更多</div>
+            <div class="w-[1920px] h-[860px] absolute bottom-0 left-0 bg-[url(./images/group1.png)]"></div>
+        </div>
+        <div class="body-center absolute top-[2333px]">
+            <div class="w-924 h-74 absolute top-[148px] left-[498px] text-[18px] text-center">
+                感谢您下载XX网平台上提供的UI设计模板！XX网是正版商业图库。<br>
+                感谢您下载XX网平台上提供的UI设计模板！XX网是正版商业图库。感谢您下载XX网平台上提供的UI设计模板！XX网是正版商业图库。
+            </div>
+            <div class="w-139 h-18 absolute top-[253px] left-[888px] text-[18px] text[#FDFDFD]">- 总经理：小包子</div>
+            <div class="w-36 h-6 absolute top-[333px] left-[892px] rounded-[3px] bg-[#663CFC]"></div>
+            <div class="w-36 h-6 absolute top-[333px] left-[942px] rounded-[3px] bg-white"></div>
+            <div class="w-36 h-6 absolute top-[333px] left-[993px] rounded-[3px] bg-[#663CFC]"></div>
+            <!-- <div class="relative top-[100%] w-[100%] h-0 bg-red-400"></div> -->
+        </div>
+    </div>
+
+    <div class="body-center-middle relative  top-[1345px] w-[100%] h-[1103px]">
+        <div class="w-201 h-12 absolute top-[150px] left-[375px] text-[#191919] font-normal">Our Awesome Work</div>
+        <div class="w-322 h-43 absolute top-[180px] left-[375px] text-[#191919] text-[46px] font-normal">我们的最新项目
+        </div>
+        <div class="w-370 h-16 absolute top-[200px] left-[1010px] flex justify-between items-center text-[16px]">
+            <div class="suoyou ">所有</div>
+            <div>网页设计</div>
+            <div>平面设计</div>
+            <div>品牌营销</div>
+        </div>
+        <div class="w-[65%] absolute top-[320px] left-[350px]">
+            <div class="w-[100%] h-[100%] flex justify-between">
+                <div>
+                    <div class="w-370 h-235 bg-[url(./images/g1.png)]"></div>
+                    <div class="text-[18px] text-[#222] mt-[17px]">书籍封面设计</div>
+                    <div class="text-[16px] text-[#8c8c8c]">Branding</div>
+                </div>
+                <div>
+                    <div class="w-370 h-235 bg-[url(./images/g2.png)]"></div>
+                    <div class="text-[18px] text-[#222] mt-[17px]">书籍封面设计</div>
+                    <div class="text-[16px] text-[#8c8c8c]">Branding</div>
+                </div>
+                <div>
+                    <div class="w-370 h-235 bg-[url(./images/g3.png)]"></div>
+                    <div class="text-[18px] text-[#222] mt-[17px]">书籍封面设计</div>
+                    <div class="text-[16px] text-[#8c8c8c]">Branding</div>
+                </div>
+            </div>
+            <div class="w-[100%] h-[100%] mt-[50px] flex justify-between">
+                <div>
+                    <div class="w-370 h-235 bg-[url(./images/g4.png)]"></div>
+                    <div class="text-[18px] text-[#222] mt-[17px]">书籍封面设计</div>
+                    <div class="text-[16px] text-[#8c8c8c]">Branding</div>
+                </div>
+                <div>
+                    <div class="w-370 h-235 bg-[url(./images/g5.png)]"></div>
+                    <div class="text-[18px] text-[#222] mt-[17px]">书籍封面设计</div>
+                    <div class="text-[16px] text-[#8c8c8c]">Branding</div>
+                </div>
+                <div>
+                    <div class="w-370 h-235 bg-[url(./images/g6.png)]"></div>
+                    <div class="text-[18px] text-[#222] mt-[17px]">书籍封面设计</div>
+                    <div class="text-[16px] text-[#8c8c8c]">Branding</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="body-center-bottom absolute top-[3877px]">
+        <div class="w-[100%] relative">
+            <div class="w-200 h-13 absolute left-[375px] top-[150px] text-[#fff] text-[16px]">Our’s Achievement</div>
+            <div class="w-441 h-97 absolute left-[375px] top-[187px] text-[#fff] text-[46px]">4578+项目Complited
+                Hole遍布全球。
+            </div>
+            <div class="w-142 h-47 absolute left-[376px] top-[350px] text-[#fff] text-[46px]">2315</div>
+            <div class="w-142 h-47 absolute left-[594px] top-[350px] text-[#fff] text-[46px]">3043</div>
+            <div class="w-142 h-47 absolute left-[826px] top-[350px] text-[#fff] text-[46px]">125</div>
+            <div class="w-142 h-47 absolute left-[376px] top-[422px] text-[#fff] text-[16px]">Clients</div>
+            <div class="w-142 h-47 absolute left-[594px] top-[422px] text-[#fff] text-[16px]">Memberes</div>
+            <div class="w-142 h-47 absolute left-[826px] top-[422px] text-[#fff] text-[16px]">Awards</div>
+            <div class="w-170 h-170 absolute left-[1147px] top-[211px] bg-[url(./images/play-button.png)]"></div>
+        </div>
+
+    </div>
+
+
+
+    <div class="body-bottom-white absolute bottom-[631px]"></div>
+
+    <div class="body-bottom absolute bottom-[0px] overflow-hidden">
+        <div class=" w-[100%] h-[100%] relative">
+            <div class="banner-left w-987 h-987 rounded-[50%] left-[-413px] bottom-[57px] absolute"></div>
+            <div class="banner-right w-1159 h-[1159px] rounded-[50%] right-[-458px] bottom-[-158px] absolute"></div>
+            <div class="w-[65%] absolute top-[494px] left-[375px] flex justify-between">
+                <div class="w-[25%] text-[#fff]">
+                    <div class="text-[34px] text-[#fff]">关于我们</div>
+                    <div class="text-[14px] mt-[51px] text-[#fff]">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt.</div>
+                    <div class="text-[14px] my-[30px] text-[#fff]">795 Folsom Ave, Suite 600<br>San Francisco, CA 94107
+                    </div>
+                    <div class="text-[14px] text-[#fff]">Call: +0123 456 78910<br>info@flattheme.com</div>
+                </div>
+                <div class="w-[25%] text-[#fff]">
+                    <div class="text-[34px] text-[#fff]">关于我们</div>
+                    <div class="text-[14px] mt-[51px] text-[#fff]">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt.</div>
+                    <div class="text-[14px] my-[30px] text-[#fff]">795 Folsom Ave, Suite 600<br>San Francisco, CA 94107
+                    </div>
+                    <div class="text-[14px] text-[#fff]">Call: +0123 456 78910<br>info@flattheme.com</div>
+                </div>
+                <div class="w-[25%] text-[#fff]">
+                    <div class="text-[34px] text-[#fff]">关于我们</div>
+                    <div class="text-[14px] mt-[51px] text-[#fff]">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt.</div>
+                    <div class="text-[14px] my-[30px] text-[#fff]">795 Folsom Ave, Suite 600<br>San Francisco, CA 94107
+                    </div>
+                    <div class="text-[14px] text-[#fff]">Call: +0123 456 78910<br>info@flattheme.com</div>
+                </div>
+                <div class="w-[25%] text-[#fff]">
+                    <div class="text-[34px] text-[#fff]">关于我们</div>
+                    <div class="text-[14px] mt-[51px] text-[#fff]">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt.</div>
+                    <div class="text-[14px] my-[30px] text-[#fff]">795 Folsom Ave, Suite 600<br>San Francisco, CA 94107
+                    </div>
+                    <div class="text-[14px] text-[#fff]">Call: +0123 456 78910<br>info@flattheme.com</div>
+                </div>
+            </div>
+
+
+            <div class="w-1230 h-1 bg-white absolute bottom-[127px] left-[345px]"></div>
+            <div class="w-372 h-16 bg-white absolute bottom-[52px] left-[375px]"></div>
+
+
+
+        </div>
 
     </div>
 
 </body>
+<script src="text1.js"></script>
 
 </html>
