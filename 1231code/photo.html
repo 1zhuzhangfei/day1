@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片选择器</title>
+</head>
+
+<body>
+    <!-- <input type="file" accept="image/*">     -->
+    <button class="showPhoto">选择图片</button>
+    <img class="showImg" style="width: 500px;height: 500px; display: none;">
+</body>
+<script>
+    var button = document.querySelector(".showPhoto");
+
+    function readPhotoUrl(file) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                console.log(e);
+                resolve(e.currentTarget.result);
+            }
+            reader.onerror = function (e) {
+                reject(e);
+            }
+        })
+    }
+
+    button.addEventListener('click', function () {
+        var p1 = showOpenFilePicker({
+            types: [{
+                description: 'Images',
+                accept: {
+                    'image/*': ['.png', '.gif', '.jpeg', '.jpg']
+                }
+            }],
+            multiple: false
+        });
+        // console.log(p1);
+        p1.then(function (result) {
+            var photo = result[0].getFile();
+            photo
+                .then(function (res) {   //File实例对象
+                    return readPhotoUrl(res);
+                    // console.log(res);
+                })
+                .then(function (content) {
+
+                    var wrapper = document.querySelector('.showImg');
+                    wrapper.src = content;
+                    wrapper.style.display = "block";
+                })
+                .catch(function (rea) {
+                    console.log(rea);
+                })
+        }).catch(function (error) {
+            console.log("获取文件失败：", error);
+        })
+    })
+
+</script>
+
+</html>

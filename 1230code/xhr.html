@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //所有任务的开始都起源于一个任务（script）
+
+
+    //能创建任务的API：script标签，定时器（setTimeout，setInterval），事件，ajax请求，promise，异步函数
+
+
+    var left = 0;
+    function animate() {
+        requestAnimationFrame(function () {
+            left++;
+            div.style.left = `${left}px`;
+            animate()
+        });
+    }
+    setTimeout(function () {
+        for (var i = 0; i < 1900000000; i++) { }
+    }, 3000);
+    animate();
+</script>
+
+</html>

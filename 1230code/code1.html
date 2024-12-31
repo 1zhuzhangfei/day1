@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <div style="width: 100px;height: 100px;background-color: red;position: relative;"></div>
+</body>
+<script>
+    var div = document.querySelector('div');
+    let channel = new MessageChannel();
+    let port1 = channel.port1;
+    let port2 = channel.port2;
+    var i = 0;
+    port2.onmessage = () => {
+        if (i > 1800) {
+            i = 0;
+        }
+        div.style.left = `${++i}px`;
+        port1.postMessage(null);
+    }
+
+    port1.postMessage(null);
+
+</script>
+
+
+</html>

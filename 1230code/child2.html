@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="child2-container">
+        <ul>
+            <li>123</li>
+        </ul>
+    </div>
+
+</body>
+<script>
+    var port2 = window.parent.port2;
+    var ul = document.querySelector('ul');
+    port2.onmessage = function (e) {
+        console.log(e.data);
+        var li = document.createElement('li');
+        li.innerText = e.data;
+        ul.appendChild(li);
+
+    }
+</script>
+
+</html>

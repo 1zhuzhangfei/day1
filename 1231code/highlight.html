@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.10.0/styles/a11y-dark.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.10.0/languages/typescript.min.js"></script>
+</head>
+
+<body>
+    <button class="file">选择文件</button>
+    <button class="copy">复制代码</button>
+
+    <pre><code class="language-html"></code></pre>
+    <!-- <input style="display: none;" type="file"> -->
+</body>
+<script>
+    var button = document.querySelector('.file');
+    // var fileReader = new FileReader();      //获取文件处理器   专门处理File的实例
+
+    // fileReader.onload = function (e) {
+    //     console.log(e.currentTarget.result);
+
+    // }
+
+    function readTextFile(file) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function (e) {
+                resolve(e.currentTarget.result);
+            }
+            reader.onerror = function (e) {
+                reject(e);
+            }
+        })
+    }
+
+    //复制文本方法
+    function copyFile(text) {
+        var copyButton = document.querySelector('.copy');
+        copyButton.addEventListener('click', function () {
+            var copyText = navigator.clipboard.writeText(text);
+            console.log(copyText);
+            copyText.then(function (res) {
+                console.log('文本已复制到剪切板!');
+
+            }).catch(function (err) {
+                console.error('无法复制文本: ', err);
+            })
+        })
+
+    }
+
+    // var fileInput = document.querySelector('input[type=file]');
+    button.addEventListener('click', function () {
+        var p1 = showOpenFilePicker();     //获取文件实例
+        p1
+            .then(function (result) {      //FileSystemFileHandle实例对象
+                //在then的回调函数中返回的值是一个新的promise则可以继续执行then的链式调用
+                //then的回调函数的返回值就是then的返回值
+                result[0].getFile()
+                    .then(function (res) {   //File实例对象
+                        return readTextFile(res);
+                        // console.log(res);
+                    })
+                    .then(function (content) {
+                        copyFile(content);
+                        var wrapper = document.querySelector('pre>code');
+                        wrapper.innerText = content;
+
+                        var brPlugin = {
+                            "before:highlightBlock": ({ block }) => {
+                                block.innerHTML = block.innerHTML.replace(/\n/g, '').replace(/<br[ /]*>/g, '\n');
+                            },
+                            "after:highlightBlock": ({ result }) => {
+                                result.value = result.value.replace(/\n/g, "<br>");
+                            }
+                        };
+                        hljs.addPlugin(brPlugin);
+                        hljs.highlightAll();
+
+                        console.log(content);
+                    })
+                    .catch(function (rea) {
+                        console.log(rea);
+                    })
+            })
+            .catch(function (reason) {
+                console.log(reason);
+            })
+    })
+
+
+    //复制文本方法
+    // document.querySelector('.copy').addEventListener('click', async (event) => {
+    //     try {
+    //         // 要复制的文本
+    //         // 将文本复制到剪贴板
+    //         await navigator.clipboard.writeText(text);
+
+    //         // 复制成功后的提示
+    //         console.log('文本已复制到剪贴板')
+    //     } catch (err) {
+    //         // 捕获并处理可能发生的错误
+    //         console.error('无法复制文本: ', err);
+    //     }
+    // });
+</script>
+
+</html>

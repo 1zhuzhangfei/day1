@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div class="openDir">
+        <button>openDir</button>
+    </div> -->
+    <div style="width: 100px;height: 100px;background-color: chocolate;">
+        <button class="openFullscreen">全屏</button>
+        <button class="exitFullscreen">退出全屏</button>
+    </div>
+
+</body>
+<script>
+    /*
+    Promise是什么？
+    对于当前发生的事情，在现在无法去拿到结果，需要时间验证（异步操作）
+
+    Promise的静态方法
+    Promise.all
+    Promise.race
+    Promise.resolve
+    Promise.reject
+    Promise的原型方法
+    promise.then
+    promise.catch
+    promise.finally
+    */
+    var promise = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            var random = Math.random();
+            console.log(random);
+            if (random >= 0.5) {
+                resolve(1000);
+            } else {
+                reject('联系不上');
+            }
+        }, 1000);
+    });
+
+    promise
+        .then(function (result) {
+            console.log("成功的原因：", result)
+            console.log("已还钱！")
+        })
+        .catch(function (reason) {
+            console.log("失败的原因：", reason)
+            console.log("已报警！")
+        })
+        .finally(function () {
+            console.log("结束")
+        });
+
+    // var button = document.querySelector(".openDir");
+    // button.onclick = function () {
+    //     var r = showDirectoryPicker();
+    //     r.then(
+    //         async function (result) {
+    //             console.log(result);
+    //         })
+    //     r.catch(
+    //         function (reason) {
+    //             console.log(reason);
+    //         })
+    // }
+
+    //元素全屏/退出全屏
+    var openButton = document.querySelector('.openFullscreen');
+    var exitButton = document.querySelector('.exitFullscreen');
+    openButton.addEventListener('click', function () {
+        var r = this.parentElement.requestFullscreen();
+        r.then(function(){
+            console.log("全屏操作成功");
+        }).catch(function(){
+            console.log("全屏失败，上报错误");
+        })
+    })
+    exitButton.addEventListener('click', function () {
+        var r = document.exitFullscreen();
+        r.then(function(){
+            console.log("退出全屏操作成功");
+        }).catch(function(){
+            console.log("退出全屏失败，上报错误");
+        })
+    })
+    
+
+
+
+</script>
+
+</html>

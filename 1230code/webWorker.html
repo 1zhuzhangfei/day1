@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="width: 100px;height: 100px;background-color: red;"></div>
+</body>
+<script>
+    //setTimeout setInterval event (Promise async await)
+    //rAF render(SLP)
+    //使用rAF做动画时一般都是递归的 （一次rAF只能执行一次回调函数）
+    var div = document.querySelector('div');
+    var x = 0;
+    function animate() {
+        requestAnimationFrame(function () {
+            if (x > 100) (x = 0);
+            div.style.transform = `translate3D(${++x}px,0,0)`;
+            animate();
+        })
+    }
+    animate();
+    var worker = new Worker('suibian.js');
+    var channel = new MessageChannel();
+    worker.postMessage({type:'connect'},[channel.port2]);
+    channel.port1.onmessage = function (evt) {
+        console.log(evt);
+    };
+    setTimeout(function () {
+        channel.port1.postMessage(2000000);
+    }, 1000);
+
+</script>
+
+
+</html>

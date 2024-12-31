@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>父页面</h1>
+    <iframe src="child1.html" frameborder="0"></iframe>
+    <iframe src="child2.html" frameborder="0"></iframe>
+
+</body>
+<script>
+    var channel = new MessageChannel();
+    var port1 = channel.port1;
+    var port2 = channel.port2;
+    port1.postMessage({ type: 'child1' });
+</script>
+
+</html>
